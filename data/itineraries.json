@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Reunion 2021",
+        "start_date": "2021-05-15",
+        "end_date": "2021-05-20"
+    },
+    {
+        "name": "Adventure Awaits",
+        "start_date": "2021-06-22",
+        "end_date": "2021-07-01"
+    },
+    {
+        "name": "The Mountains are Calling",
+        "start_date": "2021-08-15",
+        "end_date": "2021-08-31"
+    },
+    {
+        "name": "Disney Awaits",
+        "start_date": "2021-10-05",
+        "end_date": "2021-10-15"
+    },
+    {
+        "name": "Idk whatever",
+        "start_date": "2021-11-11",
+        "end_date": "2021-11-20"
+    },
+    {
+        "name": "Wanderers",
+        "start_date": "2021-12-02",
+        "end_date": "2021-12-15"
+    }
+]

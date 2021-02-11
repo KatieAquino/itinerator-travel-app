@@ -29,9 +29,12 @@ class Itinerary(db.Model):
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    name = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
+
+    user = db.relationship('User', backref='users')
+    entry = db.relationship('Entry', backref='entries')
 
     def __repr__(self):
         return f'<Itinerary id={self.id}, name={self.name}, start_date={self.start_date}'
@@ -43,7 +46,6 @@ class Entry(db.Model):
     __tablename__ = 'entries'
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     url = db.Column(db.String)
@@ -51,9 +53,14 @@ class Entry(db.Model):
     comment = db.Column(db.Text)
     location = db.Column(db.String(50))
 
-    trip_day = db.Column(db.DateTime)
+    trip_day = db.Column(db.Integer)
     itinerary_id = db.Column(db.Integer, db.ForeignKey('itineraries.id'))
     complete = db.Column(db.Boolean)
+
+    itinerary = db.relationship('Itinerary', backref='itineraries')
+    types = db.relationship('PlaceType',
+                            secondary='entry_types',
+                            backref='place_types')
 
     def __repr__(self):
         return f'<Entry id={self.id}, name={self.name}, location={self.location}'
@@ -83,7 +90,20 @@ class EntryType(db.Model):
     def __repr__(self):
         return f'<EntryType id={self.id}, place_type_id={self.place_type_id}'
 
+def connect_to_db(flask_app, db_uri='postgresql:///testdb', echo=True):
+    """Connect to database"""
+
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print('Connected to the db!')
+
 if __name__ == '__main__':
     from server import app
+
     connect_to_db(app)
     print('Connected to db!')

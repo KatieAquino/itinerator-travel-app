@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Disneyland",
+        "description": "The Happiest Place on Earth",
+        "url": "https://disneyland.disney.go.com/",
+        "image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/640/360/75/dam/disneyland/attractions/disneyland/sleeping-beauty-castle-walkthrough/sleeping-beauty-castle-exterior-16x9.jpg?1593556896598",
+        "comment": "I can't wait to go here",
+        "location": "Anaheim, Ca",
+        "trip_day": "1"
+    },
+    {
+        "name": "Disney World",
+        "description": "The Most Magical Place on Earth",
+        "url": "https://disneyworld.disney.go.com/",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/08/Magic_Kingdom_-_Cinderella_Castle_panorama_-_by_mrkathika.jpg",
+        "comment": "Let's go!",
+        "location": "Orlando, Fl",
+        "trip_day": "2"
+    },
+    {
+        "name": "The Louvre",
+        "description": "Huge musuem, very cool",
+        "url": "https://www.louvre.fr/en/visites-en-ligne",
+        "image": "https://cdn2.civitatis.com/francia/paris/entrada-museo-louvre-grid.jpg",
+        "comment": "I don't want to wait in line",
+        "location": "Paris, France",
+        "trip_day": "4"
+    },
+    {
+        "name": "Pacific Beach",
+        "description": "Beautiful beach on the Pacific Ocean",
+        "url": "https://pacificbeach.org/",
+        "image": "https://www.innatpacificbeach.com/resourcefiles/attractionsmallimages/pacific-beach-at-california-th.jpg?version=1212021195210",
+        "comment": "Let's chill in the sun!",
+        "location": "San Diego, Ca",
+        "trip_day": "2"
+    },
+    {
+        "name": "Ghibli Museum",
+        "description": "Whimsical museum dedicated to Studio Ghibli",
+        "url": "https://www.ghibli-museum.jp/en/",
+        "image": "https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2017/12/ghibli-museum-queue-AP-1024x600.jpg",
+        "comment": "Ugh we have to go! Need to get tickets early",
+        "location": "Tokyo, Japan",
+        "trip_day": "5"
+    }
+]
