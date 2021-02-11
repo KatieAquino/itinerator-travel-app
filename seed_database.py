@@ -98,6 +98,7 @@ for entry_object in entry_data:
                             url=url,
                             image=image,
                             comment=comment,
+                            location=location,
                             trip_day=trip_day,
                             itinerary_id=random_itinerary.id,
                             complete=False
