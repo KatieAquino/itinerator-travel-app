@@ -17,6 +17,12 @@ def create_user(username, email, password, fname=None, lname=None):
     return new_user
 
 
+def find_user_by_email(email):
+    """Find user by email"""
+
+    return User.query.filter(User.email == email).first()
+
+
 def create_itinerary(user, name, start_date, end_date):
     """Create and return a new itinerary"""
 
