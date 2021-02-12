@@ -3,11 +3,14 @@
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
+import os
 from jinja2 import StrictUndefined
 
 
 app = Flask(__name__)
-app.secret_key = '\xac\x83\x18\xb4\xae\x86\x1c\xefok\xe3\xa5Qrjt\xdd\x83\x95[{\x80'
+
+SECRET_KEY = os.environ['SECRET_KEY']
+app.secret_key = SECRET_KEY
 
 
 
@@ -18,7 +21,7 @@ def display_homepage():
     return render_template('index.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login-user', methods=['POST'])
 def log_in_user():
     """Log in user"""
 
@@ -26,8 +29,9 @@ def log_in_user():
     password = request.form.get('login-password')
 
     user = crud.find_user_by_email(email)
+    user_password = user.check_password(password)
 
-    if user and user.password == password:
+    if user == True and user_password == True:
         session['user'] = user.id
         flash('Successfully logged in!')
     

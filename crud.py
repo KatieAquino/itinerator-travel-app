@@ -5,12 +5,14 @@ from model import db, connect_to_db, User, Itinerary, Entry, PlaceType, EntryTyp
 def create_user(username, email, password, fname=None, lname=None):
     """Create and return a new user"""
 
-    new_user = User(username=username,
-                email=email,
-                password=password,
-                fname=fname,
-                lname=lname)
+    new_user = User(
+                    username=username,
+                    email=email,
+                    fname=fname,
+                    lname=lname)
     
+    new_user.set_password(password)
+
     db.session.add(new_user)
     db.session.commit()
 

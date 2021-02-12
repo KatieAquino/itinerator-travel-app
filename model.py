@@ -1,6 +1,7 @@
 """Travel App Itininary Database"""
 
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -16,7 +17,18 @@ class User(db.Model):
     fname = db.Column(db.String(20))
     lname = db.Column(db.String(30))
     email = db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(128))
+
+    #hash password for database security
+    def set_password(self, password):
+        """Hash password for security"""
+
+        self.password = generate_password_hash(password)
+    
+    def check_password(self, password):
+        """Checks if password matches"""
+
+        return check_password_hash(self.password, password)
 
     def __repr__(self):
         return f'<User id={self.id}, username={self.username}, email={self.email}>'

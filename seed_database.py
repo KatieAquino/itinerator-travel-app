@@ -6,6 +6,7 @@ from random import choice, randint
 from datetime import datetime
 
 from model import *
+from crud import create_user
 import server
 
 os.system('dropdb testdb')
@@ -15,29 +16,32 @@ connect_to_db(server.app)
 db.create_all()
 
 
-mickey_mouse = User(    username = 'mickeymouse',
-                fname = 'Mickey',
-                lname = 'Mouse',
-                email = 'mmouse@test.com',
-                password = '123password')
+mickey_mouse = create_user( username = 'mickeymouse',
+                            email = 'mmouse@test.com',
+                            password = '123password',
+                            fname = 'Mickey',
+                            lname = 'Mouse')
 
 minnie_mouse = User(    username = 'minniemouse',
-                        fname = 'Minnie',
-                        lname = 'Mouse',
                         email = 'dotsandbows@test.com',
-                        password = '456password')
+                        password = '456password',
+                        fname = 'Minnie',
+                        lname = 'Mouse'
+                        )
 
 donald_duck = User(     username = 'donaldduck',
-                        fname = 'Donald',
-                        lname = 'Duck',
                         email = 'dduck@test.com',
-                        password = '789password')
+                        password = '789password',
+                        fname = 'Donald',
+                        lname = 'Duck'
+                        )
 
 daisy_duck = User(      username = 'daisyduck',
-                        fname = 'Daisy',
-                        lname = 'Duck',
                         email = 'daisybow@test.com',
-                        password = 'donaldstopnow')
+                        password = 'donaldstopnow',
+                        fname = 'Daisy',
+                        lname = 'Duck'
+                        )
 
 db_users = [mickey_mouse, minnie_mouse, donald_duck, daisy_duck]
 
