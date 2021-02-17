@@ -1,13 +1,13 @@
-const Route = ReactRouterDOM.Route;
-const Link = ReactRouterDOM.Link;
-const Switch = ReactRouterDOM.Switch;
-const Router = ReactRouterDOM.BrowserRouter;
+// Rename react router objcts for brevity
+const Route = ReactRouterDOM.Route
+const Link = ReactRouterDOM.Link
+const Switch = ReactRouterDOM.Switch
+const Router = ReactRouterDOM.Router
 
 const Homepage = (props) => {
   return (
     <div>
       <h1>Welcome</h1>
-      <h2>Plan Your Next Adventure</h2>
         <Login/>
         <NewUser/>
     </div>
@@ -36,7 +36,8 @@ const TravelApp = (props) => {
     <Router>
       <div>
         <nav>
-          <Link to="/">Home</Link>
+          Itinerator
+            <Link to="/">Home</Link>
         </nav>
         
         <Switch>
