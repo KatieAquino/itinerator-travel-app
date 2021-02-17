@@ -1,22 +1,24 @@
-{% extends 'base.html'; %}
+{% extends 'base.html' %}
 
 {% block head %}
   <link rel="stylesheet" href="/static/css/styles.css">
 
   <!-- React scripts -->
-  <script src="/static/lib/babel-standalone.js"></script>
-  <script src="/static/lib/react.development.js"></script>
-  <script src="/static/lib/react-dom.development.js"></script>
+
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
 
   <!-- React Router -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js" 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js" 
   integrity="sha512-NG4Cm3Ubs7d/nPyzrTFM53RP8tPjQhRT0hea48yJ/qEXsuhq7wGbjX68A5gBiW6BoCQbqE3/M+UOj2lLXPauhw==" 
-  crossorigin="anonymous"></script>
-  
+  crossorigin="anonymous"></script> -->
+
 {% endblock head %}
 
 {% block body %}
   <div id="root"></div>
 
-  <script src="static/js/app.jsx" type="text/jsx"></script>
+  <script src="/static/app.jsx" type="text/jsx"></script>
 {% endblock %}
