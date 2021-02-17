@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{% block title %}{% endblock %}</title>
+{% extends 'base.html'; %}
 
-  <!-- We'll load React dependencies on all pages for this app. -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+{% block head %}
+  <link rel="stylesheet" href="/static/css/styles.css">
 
-  {% block js %}
-  {% endblock %}
+  <!-- React scripts -->
+  <script src="/static/lib/babel-standalone.js"></script>
+  <script src="/static/lib/react.development.js"></script>
+  <script src="/static/lib/react-dom.development.js"></script>
 
-  <link href="/static/css/site.css" rel="stylesheet">
-</head>
-<body>
-  <h1>Welcome</h1>
+  <!-- React Router -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js" 
+  integrity="sha512-NG4Cm3Ubs7d/nPyzrTFM53RP8tPjQhRT0hea48yJ/qEXsuhq7wGbjX68A5gBiW6BoCQbqE3/M+UOj2lLXPauhw==" 
+  crossorigin="anonymous"></script>
+  
+{% endblock head %}
 
-  <!-- Include the page's content with this block. -->
-  {% block body %}
-  {% endblock %}
-</body>
-</html>
+{% block body %}
+  <div id="root"></div>
+
+  <script src="static/js/app.jsx" type="text/jsx"></script>
+{% endblock %}
