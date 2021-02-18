@@ -21,7 +21,7 @@ def display_homepage():
     return render_template('index.html')
 
 
-@app.route('/login-user', methods=['POST'])
+@app.route('/api/login-user', methods=['POST'])
 def log_in_user():
     """Log in user"""
 
@@ -31,7 +31,7 @@ def log_in_user():
     user = crud.find_user_by_email(email)
     user_password = user.check_password(password)
 
-    if user == True and user_password == True:
+    if user.email == email and user_password == True:
         session['user'] = user.id
         flash('Successfully logged in!')
     
@@ -40,6 +40,29 @@ def log_in_user():
 
     return redirect('/')
 
+@app.route('/api/create-account', methods=['POST'])
+def create_new_account():
+    """Create a new account"""
+
+    username = request.form.get('new-username')
+    email = request.form.get('new-email')
+    password = request.form.get('new-password')
+    fname = request.form.get('new-fname')
+    lname = request.form.get('new-lname')
+
+    user = crud.find_user_by_email(email)
+    print(user)
+
+    if user == None:
+        user = crud.create_user(username, email, password, fname, lname)
+        session['user'] = user.id
+        flash('Successfully created account and logged in.')
+    
+    else:
+        flash('Unable to create account with that email.')
+        
+    return redirect('/')
+    
 
 if __name__ == '__main__':
     connect_to_db(app)
