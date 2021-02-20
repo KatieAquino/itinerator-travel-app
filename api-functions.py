@@ -14,4 +14,34 @@ def get_place_coordinates(place):
 
     return place_data
 
-    
+
+def get_points_of_interests(place_data, radius=20000, kinds=None):
+    """Requests & returns points of interests for given location,
+    defaults to a radius of 48280 meters, roughly 30 miles"""
+
+    lon = place_data['lon']
+    lat = place_data['lat']
+    mult_categories = []
+    final_req = []
+
+    #will return all categories
+    if kinds == None:
+        url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=20&apikey={API_KEY}'
+        req = requests.get(url)
+
+        return req.json()
+
+    #loops through kinds to make individual request per category
+    #returns list of json elements
+    else:
+        for item in kinds:
+            req = requests.get(f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&kinds={item}&format=json&limit=20&apikey={API_KEY}')
+            req = req.json()
+            mult_categories.append(req)
+        
+        for category in mult_categories:
+            for element in category:
+                final_req.append(element)
+        
+        return final_req
+
