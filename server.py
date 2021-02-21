@@ -3,6 +3,7 @@
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
+import api-functions
 import os
 from jinja2 import StrictUndefined
 
@@ -11,7 +12,6 @@ app = Flask(__name__)
 
 SECRET_KEY = os.environ['SECRET_KEY']
 app.secret_key = SECRET_KEY
-
 
 
 @app.route('/')
@@ -31,6 +31,7 @@ def log_in_user():
     user = crud.find_user_by_email(email)
     user_password = user.check_password(password)
 
+    #verifies that user email and password match what is in database
     if user.email == email and user_password == True:
         session['user'] = user.id
         flash('Successfully logged in!')
@@ -50,9 +51,10 @@ def create_new_account():
     fname = request.form.get('new-fname')
     lname = request.form.get('new-lname')
 
+    #checks if user is already in database
     user = crud.find_user_by_email(email)
-    print(user)
-
+    
+    #if user not already in database, create new user
     if user == None:
         user = crud.create_user(username, email, password, fname, lname)
         session['user'] = user.id
@@ -62,6 +64,19 @@ def create_new_account():
         flash('Unable to create account with that email.')
         
     return redirect('/')
+
+# TODO: 
+@app.route('/api/destination')
+def show_user_places():
+    """Display places for searched destination"""
+
+    place = request.args.get('search')
+
+    location_coord = api-functions.get_place_coordinates(place)
+    poi_options = api-functions.get_points_of_interests(location_coord)
+
+
+
     
 
 if __name__ == '__main__':
