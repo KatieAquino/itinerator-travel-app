@@ -58,7 +58,12 @@ def get_place_info(place_list):
         req = requests.get(url)
         req = req.json()
 
-        place_details.append(req)
+        if 'wikipedia' in req and 'preview' in req:
+
+            place_details.append({'name': req['name'], 
+                                'wikipedia': req['wikipedia'], 
+                                'image': req['preview']['source'],
+                                'extract': req['wikipedia_extracts']['text']})
 
     return place_details
 
