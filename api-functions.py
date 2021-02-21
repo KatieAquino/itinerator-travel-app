@@ -45,3 +45,20 @@ def get_points_of_interests(place_data, radius=20000, kinds=None):
         
         return final_req
 
+
+def get_place_info(place_list):
+    """Takes list of places and returns detailed information for each place"""
+
+    place_details = []
+
+    for place in place_list:
+        place_id = place['xid']
+
+        url = f'https://api.opentripmap.com/0.1/en/places/xid/{place_id}?apikey={API_KEY}'
+        req = requests.get(url)
+        req = req.json()
+
+        place_details.append(req)
+
+    return place_details
+
