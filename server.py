@@ -3,7 +3,7 @@
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
-import api-functions
+import APIfunctions
 import os
 from jinja2 import StrictUndefined
 
@@ -65,19 +65,31 @@ def create_new_account():
         
     return redirect('/')
 
-# TODO: 
+
 @app.route('/api/destination')
 def show_user_places():
     """Display places for searched destination"""
 
-    place = request.args.get('search')
+    print('THIS SEARCH FUNCTION IS BEING CALLED')
+    print('*' * 100)
+    place = request.args.get('search_input')
+    print('place', place)
 
-    location_coord = api-functions.get_place_coordinates(place)
-    poi_options = api-functions.get_points_of_interests(location_coord)
+    location_coord = APIfunctions.get_place_coordinates(place)
+    print('coords', location_coord)
+    poi_options = APIfunctions.get_points_of_interests(location_coord)
+    print('poi_opts', poi_options)
+    poi_details = APIfunctions.get_place_info(poi_options)
+    print(poi_details)
+
+    print('*' * 100)
+    print('details', poi_details)
+    print('*' * 100)
+
+    return jsonify({'places': poi_details})
 
 
 
-    
 
 if __name__ == '__main__':
     connect_to_db(app)
