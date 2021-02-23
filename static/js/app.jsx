@@ -4,11 +4,20 @@ const Link = ReactRouterDOM.Link;
 const Switch = ReactRouterDOM.Switch;
 const Router = ReactRouterDOM.BrowserRouter;
 
+//Displays homepage
 const Homepage = (props) => {
   return (
     <div>
       <h1>Welcome</h1>
       <h2>Plan Your Next Adventure</h2>
+    </div>
+  );
+}
+
+const NavBar = (props) => {
+  return (
+    <div>
+      <Link to="/">Home</Link>
     </div>
   );
 }
@@ -45,10 +54,8 @@ const TravelApp = (props) => {
     <Router>
       <div>
         <nav>
-          <Link to="/">Home</Link>
-          <div className="nav-search">
-            <input type="text" placeholder="Where are you heading?" name="search" />
-          </div>
+            <NavBar />
+            <SearchBar />
         </nav>
         <Switch>
           <Route exact path="/">
@@ -62,8 +69,10 @@ const TravelApp = (props) => {
           <Route path="/create-account">
             <CreateAccount />
           </Route>
+          <Route path="/api/destination">
+            <SearchBar />
+          </Route>
         </Switch>
-
       </div>
     </Router>
   );

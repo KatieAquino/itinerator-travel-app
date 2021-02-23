@@ -66,13 +66,13 @@ def create_new_account():
     return redirect('/')
 
 
-@app.route('/api/destination')
+@app.route('/api/destination/search.json')
 def show_user_places():
     """Display places for searched destination"""
 
     print('THIS SEARCH FUNCTION IS BEING CALLED')
     print('*' * 100)
-    place = request.args.get('search_input')
+    place = request.args.get('places')
     print('place', place)
 
     location_coord = APIfunctions.get_place_coordinates(place)
