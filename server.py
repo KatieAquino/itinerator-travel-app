@@ -70,21 +70,15 @@ def create_new_account():
 def show_user_places():
     """Display places for searched destination"""
 
-    print('THIS SEARCH FUNCTION IS BEING CALLED')
-    print('*' * 100)
     place = request.args.get('places')
-    print('place', place)
+    
 
     location_coord = APIfunctions.get_place_coordinates(place)
-    print('coords', location_coord)
+    
     poi_options = APIfunctions.get_points_of_interests(location_coord)
-    print('poi_opts', poi_options)
+    
     poi_details = APIfunctions.get_place_info(poi_options)
-    print(poi_details)
 
-    print('*' * 100)
-    print('details', poi_details)
-    print('*' * 100)
 
     return jsonify({'places': poi_details})
 

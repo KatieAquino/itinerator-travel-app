@@ -55,7 +55,7 @@ const TravelApp = (props) => {
       <div>
         <nav>
             <NavBar />
-            <SearchBar />
+            <DisplaySearchBar />
         </nav>
         <Switch>
           <Route exact path="/">
@@ -70,7 +70,7 @@ const TravelApp = (props) => {
             <CreateAccount />
           </Route>
           <Route path="/api/destination">
-            <SearchBar />
+            <DisplaySearchBar />
           </Route>
         </Switch>
       </div>

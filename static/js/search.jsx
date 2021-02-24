@@ -1,5 +1,4 @@
-const PlaceDetail = (props) => {
-  const { place } = props;
+const PlaceDetail = ({place}) => {
   return (
     <div>
       <h2>{place.name}</h2>
@@ -10,10 +9,11 @@ const PlaceDetail = (props) => {
   )
 }
 
-const SearchBar = (props) => {
+const DisplaySearchBar = (props) => {
   const [query, setQuery] = React.useState(null);
-  const [places, setPlaces] = React.useState({});
+  const [places, setPlaces] = React.useState([]);
   console.log('beginning Search');
+  console.log(places);
 
   // const initialSearchInput = Object.freeze({
   //   query: '',
@@ -21,11 +21,12 @@ const SearchBar = (props) => {
 
   const handleSearchInput = (evt) => {
     setQuery(evt.target.value);
+    console.log('query:', query, 'places: ', places);
     //   ...query, [evt.target.name]: evt.target.value
     // })
   }
   
-  const Search = (evt) => {
+  const handleSearch = (evt) => {
     evt.preventDefault();
     console.log('SEARCHING');
     
@@ -34,29 +35,33 @@ const SearchBar = (props) => {
 
     fetch(url) 
     .then((res) => res.json())
-    .then((results) => {console.log(results); return results})
+    .then((results) => {console.log('line 38', results); return results})
     .then((results) => setPlaces(results.places));
     
-    // console.log('places', places);
-    // if (places.length === 0) return <div>Please Wait...</div>;
-    console.log(places);
-    const details = [];
-    for (const place of places) {
-      details.push(<PlaceDetail name={place.name} 
-                                wikipedia={place.wikipedia} 
-                                image={place.image} 
-                                extract={place.extract}/>);
-    }
-    return <div>{details}</div>
+    console.log(' before for loop places', places);
   
     };
-    console.log(places);
+    console.log(query, places);
+    const generateSearchResults = () => {
+    if (places.length === 0) return <div>Please Wait...</div>;
+  
+      const details = [];
+      console.log('before line 46');
+      for (const place of places) {
+        details.push(<PlaceDetail place={place} key={name}/>);
+      }
+      return <div>{details}</div>
+  }
   return (
+    <div>
     <div className="nav-search">
-      <form onSubmit={Search}>
+      <form onSubmit={handleSearch}>
         <input type="search" placeholder="Where are you heading?" name="search_input" onChange={handleSearchInput} value={query}/>
         <button className="search-button" type="submit">Go</button>
       </form>
     </div>
+    <div>{generateSearchResults()}</div>
+    </div>
   )
 }
+
