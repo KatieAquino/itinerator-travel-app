@@ -41,6 +41,7 @@ def log_in_user():
 
     return redirect('/')
 
+
 @app.route('/api/create-account', methods=['POST'])
 def create_new_account():
     """Create a new account"""
@@ -81,6 +82,29 @@ def show_user_places():
 
 
     return jsonify({'places': poi_details})
+
+
+@app.route('/api/profile/')
+def show_user_profile():
+    """Get User Itineraries & Entries"""
+
+    user = session['user']
+
+    itineraries = crud.find_itinerary_by_user(user)
+
+    return jsonify({'itineraries': itineraries})
+
+
+@app.route('/api/itinerary/entries')
+def show_entries_for_itinerary():
+    """Display entries for itinerary"""
+
+    itinerary = request.args.get('itinerary')
+
+    entry_details = crud.find_entries_by_itinerary(itinerary)
+
+    return jsonify({'entries': entry_details})
+
 
 
 

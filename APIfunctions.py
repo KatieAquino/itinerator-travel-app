@@ -26,7 +26,7 @@ def get_points_of_interests(place_data, radius=20000, kinds=None):
 
     #will return all categories
     if kinds == None:
-        url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=20&apikey={API_KEY}'
+        url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=50&apikey={API_KEY}'
         req = requests.get(url)
 
         return req.json()
@@ -57,10 +57,12 @@ def get_place_info(place_list):
         url = f'https://api.opentripmap.com/0.1/en/places/xid/{place_id}?apikey={API_KEY}'
         req = requests.get(url)
         req = req.json()
+        print(req)
 
         if 'wikipedia' in req and 'preview' in req:
 
-            place_details.append({'name': req['name'], 
+            place_details.append({'xid': req['xid'],
+                                'name': req['name'], 
                                 'wikipedia': req['wikipedia'], 
                                 'image': req['preview']['source'],
                                 'extract': req['wikipedia_extracts']['text']})
