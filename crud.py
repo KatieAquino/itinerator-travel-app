@@ -62,6 +62,12 @@ def create_entry(itinerary, name, description, url, image, comment, location, tr
     return new_entry
 
 
+def find_itinerary_by_user(user):
+    """Find and return itinerary per user"""
+
+    return Itinerary.query.filter(Itinerary.user == user).all()
+
+
 def create_new_type(place_type):
     """Create and return a new place type"""
 
@@ -82,6 +88,12 @@ def create_new_entry_type(place_type, entry):
     db.session.commit()
 
     return new_entry_type
+
+
+def find_entries_by_itinerary(itinerary):
+    """Find and return all entries for an itinerary"""
+
+    return Entry.query.filter(Entry.itinerary == itinerary).all()
 
 
 
