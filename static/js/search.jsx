@@ -12,18 +12,14 @@ const PlaceDetail = ({place}) => {
 const DisplaySearchBar = (props) => {
   const [query, setQuery] = React.useState(null);
   const [places, setPlaces] = React.useState([]);
+  const [display, setDisplay] = React.useState(false)
   console.log('beginning Search');
   console.log(places);
-
-  // const initialSearchInput = Object.freeze({
-  //   query: '',
-  // });
 
   const handleSearchInput = (evt) => {
     setQuery(evt.target.value);
     console.log('query:', query, 'places: ', places);
-    //   ...query, [evt.target.name]: evt.target.value
-    // })
+
   }
   
   const handleSearch = (evt) => {
@@ -36,12 +32,14 @@ const DisplaySearchBar = (props) => {
     fetch(url) 
     .then((res) => res.json())
     .then((results) => {console.log('line 38', results); return results})
-    .then((results) => setPlaces(results.places));
+    .then((results) => setPlaces(results.places))
+    .then(() => setDisplay(true));
     
     console.log(' before for loop places', places);
   
     };
     console.log(query, places);
+    
     const generateSearchResults = () => {
     if (places.length === 0) return <div>Please Wait...</div>;
   
@@ -55,10 +53,20 @@ const DisplaySearchBar = (props) => {
   return (
     <div>
     <div className="nav-search">
-      <form onSubmit={handleSearch}>
-        <input type="search" placeholder="Where are you heading?" name="search_input" onChange={handleSearchInput} value={query}/>
-        <button className="search-button" type="submit">Go</button>
-      </form>
+      <div class="form-group mb-2">
+        <form onSubmit={handleSearch} class="form-inline">
+          <div class="form-group mx-sm-3 mb-2">
+            <input 
+                  type="search"
+                  class="form-control"
+                  placeholder="Where are you heading?" 
+                  name="search_input" 
+                  onChange={handleSearchInput} 
+                  value={query}/>
+            <button type="button" class="btn btn-primary"> Go </button>
+          </div>
+        </form>
+      </div>
     </div>
     <div>{generateSearchResults()}</div>
     </div>

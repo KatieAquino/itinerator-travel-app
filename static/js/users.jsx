@@ -14,20 +14,26 @@ const UserLogin = (props) => {
   // //   return <div>Hi {user.name}!</div>
   // }
   return (
+    <div class="container">
     <form action="/api/login-user" method="POST">
       <h2>Login</h2>
-      <div class="form-group">
-        <label for="login-email">Email</label> 
-        <input type="email" class="form-control" id="login-email" 
-        name="login-email" required/>
+      <div class="form-group row">
+        <label for="login-email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="login-email" 
+          name="login-email" required/>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="login-password">Password</label> 
+      <div class="form-group row">
+        <label for="login-password" class="col-sm-2 col-form-label">Password:</label> 
+        <div class="col-sm-10">
         <input type="password" class="form-control" id="login-password" 
         name="login-password" required/>
+        </div>
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
+    </div>
   );
 }
 
