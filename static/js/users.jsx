@@ -1,16 +1,32 @@
 const UserLogin = (props) => {
 
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [user, setUser] = useState('');
+
+  // const handleSubmit = async evt => {
+  //   evt.preventDefault();
+
+  // //   const user = { username, password };
+  // //   const
+  // // }
+  // // if (user) {
+  // //   return <div>Hi {user.name}!</div>
+  // }
   return (
     <form action="/api/login-user" method="POST">
       <h2>Login</h2>
-      <p>Email
-        <input type="text" name="login-email" required/>
-      </p>
-      <p>
-        Password
-        <input type="password" name="login-password" required/>
-      </p>
-      <button className="user-button">Submit</button>
+      <div class="form-group">
+        <label for="login-email">Email</label> 
+        <input type="email" class="form-control" id="login-email" 
+        name="login-email" required/>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label> 
+        <input type="password" class="form-control" id="login-password" 
+        name="login-password" required/>
+      </div>
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );
 }
