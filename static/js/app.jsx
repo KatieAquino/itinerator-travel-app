@@ -28,7 +28,7 @@ const Login = (props) => {
       Returning User
         <p>
           <Link to="/login-user">
-            <button className="user-button">Login</button>
+            <button type="button" className="btn btn-primary">Login</button>
           </Link>
         </p>
     </section>
@@ -41,7 +41,7 @@ const NewUser = (props) => {
       New User
         <p>
           <Link to="/create-account">
-            <button className="user-button">Create Account</button>
+            <button type="button" className="btn btn-primary">Create Account</button>
           </Link>
         </p>
     </section>
