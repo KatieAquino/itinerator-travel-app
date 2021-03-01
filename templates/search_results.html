@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ place }}{% endblock %}
+
+{% block head %}
+  <h1>Places to Visit in {{ place }}</h1>
+{% endblock head %}
+
+{% block body %}
+  <ul>
+    {% for item in poi_details %}
+      <li id={{ item.xid }}>
+        <h2>{{ item.name }}</h2>
+        <img src="{{ item.image }}">
+        <p>{{ item.extract }}</p>
+        <a href="{{ item.wikipedia }}">
+          More information available here.
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

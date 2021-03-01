@@ -84,11 +84,13 @@ def show_user_places():
     
     poi_details = APIfunctions.get_place_info(poi_options)
 
+    # return jsonify({'places': poi_details})
+    return render_template('search_results.html', 
+                            poi_details=poi_details,
+                            place=place)
 
-    return jsonify({'places': poi_details})
 
-
-@app.route('/api/profile/')
+@app.route('/profile')
 def show_user_profile():
     """Get User Itineraries & Entries"""
 
@@ -98,7 +100,7 @@ def show_user_profile():
 
     return jsonify({'itineraries': itineraries})
 
-@app.route('/profile')
+
 
 
 @app.route('/api/itinerary/entries')
