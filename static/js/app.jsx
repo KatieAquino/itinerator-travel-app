@@ -18,6 +18,20 @@ const NavBar = (props) => {
   return (
     <div>
       <Link to="/">Home</Link>
+      <div className="nav-search">
+      <div className="form-group mb-2">
+        <form action="/api/destination/search" className="form-inline">
+          <div className="form-group mx-sm-3 mb-2">
+            <input 
+                  type="search"
+                  className="form-control"
+                  placeholder="Where are you heading?" 
+                  name="search_input"  />
+            <button type="button" className="btn btn-primary"> Go </button>
+          </div>
+        </form>
+      </div>
+    </div>
     </div>
   );
 }
@@ -55,7 +69,6 @@ const TravelApp = (props) => {
       <div>
         <nav>
             <NavBar />
-            <DisplaySearchBar />
         </nav>
         <Switch>
           <Route exact path="/">
@@ -68,9 +81,6 @@ const TravelApp = (props) => {
           </Route>
           <Route path="/create-account">
             <CreateAccount />
-          </Route>
-          <Route path="/api/destination">
-            <DisplaySearchBar />
           </Route>
         </Switch>
       </div>
