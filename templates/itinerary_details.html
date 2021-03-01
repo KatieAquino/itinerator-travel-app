@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Itinerary Details{% endblock %}
+
+{% block head %}
+  
+{% endblock head %}
+
+{% block body %}
+  <ul> <H2>Upcoming adventures:</H2>
+    {% for item in entry_details %}
+      <li>
+        <h3>{{ item.name }}</h3>
+        <img src="{{ item.image }}" />
+				<p>{{ item.comment }}</p>
+				<p>{{ item.location }}</p>
+				<p><a href="{{ item.url }}">
+          Learn More at {{ item.url }} </a></p>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

@@ -99,6 +99,8 @@ def create_new_entry_type(place_type, entry):
 def find_entries_by_itinerary(itinerary):
     """Find and return all entries for an itinerary"""
 
+    itinerary = Itinerary.query.get(itinerary)
+
     return Entry.query.filter(Entry.itinerary == itinerary).all()
 
 

@@ -117,17 +117,14 @@ def show_user_profile():
 
 
 
-@app.route('/api/itinerary/entries')
-def show_entries_for_itinerary():
+@app.route('/itinerary/<id>')
+def show_entries_for_itinerary(id):
     """Display entries for itinerary"""
 
-    itinerary = request.args.get('itinerary')
+    entry_details = crud.find_entries_by_itinerary(id)
 
-    entry_details = crud.find_entries_by_itinerary(itinerary)
-
-    return jsonify({'entries': entry_details})
-
-
+    return render_template('itinerary_details.html',
+                            entry_details=entry_details)
 
 
 

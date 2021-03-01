@@ -7,11 +7,12 @@
 {% endblock head %}
 
 {% block body %}
-  <ul>
+  <ul> <H2>Upcoming adventures:</H2>
     {% for item in itineraries %}
       <li>
-        {{ item.name }}
-        {{ item.start_date }}
+        <h3><a href="/itinerary/{{ item.id }}">
+          {{ item.name }}</a></h3>
+        <p>{{ item.start_date }}</p>
       </li>
     {% endfor %}
   </ul>
