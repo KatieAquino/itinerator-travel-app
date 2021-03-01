@@ -1,3 +1,15 @@
+// test tomorrow
+//const DisplayNavBar = (props) => {
+//   const pages  = ['home', 'about'];
+//   const navLinks = pages.map(page => {
+//     return(
+//       <a href={'/' + page}>
+//         Page
+//       </a>
+//     )
+//   });
+// }
+
 const PlaceDetail = ({place}) => {
   return (
     <div>
@@ -53,17 +65,17 @@ const DisplaySearchBar = (props) => {
   return (
     <div>
     <div className="nav-search">
-      <div class="form-group mb-2">
-        <form onSubmit={handleSearch} class="form-inline">
-          <div class="form-group mx-sm-3 mb-2">
+      <div className="form-group mb-2">
+        <form onSubmit={handleSearch} className="form-inline">
+          <div className="form-group mx-sm-3 mb-2">
             <input 
                   type="search"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Where are you heading?" 
                   name="search_input" 
                   onChange={handleSearchInput} 
                   value={query}/>
-            <button type="button" class="btn btn-primary"> Go </button>
+            <button type="button" className="btn btn-primary"> Go </button>
           </div>
         </form>
       </div>
