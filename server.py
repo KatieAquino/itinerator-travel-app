@@ -35,11 +35,13 @@ def log_in_user():
     if user.email == email and user_password == True:
         session['user'] = user.id
         flash('Successfully logged in!')
+        
+        return redirect('/profile')
     
     else:
         flash('Unable to login, please try again')
 
-    return redirect('/')
+        return redirect('/')
 
 
 @app.route('/api/create-account', methods=['POST'])
@@ -60,18 +62,20 @@ def create_new_account():
         user = crud.create_user(username, email, password, fname, lname)
         session['user'] = user.id
         flash('Successfully created account and logged in.')
+
+        return redirect('/profile')
     
     else:
         flash('Unable to create account with that email.')
         
-    return redirect('/')
+        return redirect('/')
 
 
-@app.route('/api/destination/search.json')
+@app.route('/api/destination/search')
 def show_user_places():
     """Display places for searched destination"""
 
-    place = request.args.get('places')
+    place = request.args.get('search_input')
     
 
     location_coord = APIfunctions.get_place_coordinates(place)
@@ -93,6 +97,8 @@ def show_user_profile():
     itineraries = crud.find_itinerary_by_user(user)
 
     return jsonify({'itineraries': itineraries})
+
+@app.route('/profile')
 
 
 @app.route('/api/itinerary/entries')
