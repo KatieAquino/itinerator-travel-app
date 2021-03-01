@@ -34,6 +34,7 @@ def log_in_user():
     #verifies that user email and password match what is in database
     if user.email == email and user_password == True:
         session['user'] = user.id
+        session['username'] = user.username
         flash('Successfully logged in!')
         
         return redirect('/profile')
@@ -61,6 +62,8 @@ def create_new_account():
     if user == None:
         user = crud.create_user(username, email, password, fname, lname)
         session['user'] = user.id
+        session['username'] = user.username
+
         flash('Successfully created account and logged in.')
 
         return redirect('/profile')
@@ -94,11 +97,22 @@ def show_user_places():
 def show_user_profile():
     """Get User Itineraries & Entries"""
 
-    user = session['user']
+    if 'user' in session:
+        print(session['user'])
+        print('*' * 25)
 
-    itineraries = crud.find_itinerary_by_user(user)
+        user = crud.find_itinerary_by_user_id(session['user'])
+        
+        itineraries = crud.find_itinerary_by_user(user)
+        username = session['username']
 
-    return jsonify({'itineraries': itineraries})
+        return render_template('profile.html', 
+                                itineraries=itineraries,
+                                username=username)
+    
+    else:
+        flash('Please login')
+        return redirect('/')
 
 
 

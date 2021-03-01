@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ username }} Profile{% endblock %}
+
+{% block head %}
+  <h1>Hi {{ username }}!</h1>
+{% endblock head %}
+
+{% block body %}
+  <ul>
+    {% for item in itineraries %}
+      <li>
+        {{ item.name }}
+        {{ item.start_date }}
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
