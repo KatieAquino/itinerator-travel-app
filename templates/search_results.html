@@ -2,11 +2,9 @@
 
 {% block title %}{{ place }}{% endblock %}
 
-{% block head %}
-  <h1>Places to Visit in {{ place }}</h1>
-{% endblock head %}
 
 {% block body %}
+  <h1>Places to Visit in {{ place }}</h1>
   <ul>
     {% for item in poi_details %}
       <li id={{ item.xid }}>

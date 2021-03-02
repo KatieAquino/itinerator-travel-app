@@ -115,8 +115,6 @@ def show_user_profile():
         return redirect('/')
 
 
-
-
 @app.route('/itinerary/<id>')
 def show_entries_for_itinerary(id):
     """Display entries for itinerary"""

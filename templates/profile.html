@@ -2,11 +2,9 @@
 
 {% block title %}{{ username }} Profile{% endblock %}
 
-{% block head %}
-  <h1>Hi {{ username }}!</h1>
-{% endblock head %}
 
 {% block body %}
+  <h1>Hi {{ username }}!</h1>
   <ul> <H2>Upcoming adventures:</H2>
     {% for item in itineraries %}
       <li>
