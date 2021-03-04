@@ -104,6 +104,22 @@ def find_entries_by_itinerary(itinerary):
     return Entry.query.filter(Entry.itinerary == itinerary).all()
 
 
+def find_entry_by_id(id):
+    """Find and return an entry by id number"""
+
+    return Entry.query.get(id)
+
+
+def update_entry(new_name, new_comment, new_url, entry):
+    """Updates entry information based on user input"""
+
+    entry.name = new_name
+    entry.comment = new_comment
+    entry.url = new_url
+
+    db.session.commit()
+
+
 
 
 if __name__ == '__main__':

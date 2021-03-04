@@ -125,6 +125,30 @@ def show_entries_for_itinerary(id):
                             entry_details=entry_details)
 
 
+@app.route('/api/create-itinerary', methods=['POST'])
+def user_create_itinerary():
+    """Allows user to create a new itinerary"""
+
+
+@app.route('/api/update-entry/<id>', methods=['POST'])
+def user_edit_entry(id):
+    """Allows user to edit an entry on an itinerary"""
+    
+    name = request.form.get('name-edit')
+    comments = request.form.get('comment-edit')
+    url = request.form.get('url-edit')
+    entry = crud.find_entry_by_id(id)
+    print('*' * 25)
+    print('entry is: ', entry)
+    print('*' * 25)
+
+    crud.update_entry(name, comments, url, entry)
+
+    flash(f'{name} successfully updated!')
+    return redirect('/profile')
+
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)

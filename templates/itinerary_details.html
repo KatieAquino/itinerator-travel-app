@@ -5,6 +5,7 @@
 
 {% block body %}
   <ul> <H2>Upcoming adventures:</H2>
+    
     {% for item in entry_details %}
       <li>
         <h3>{{ item.name }}</h3>
@@ -13,6 +14,44 @@
 				<p>{{ item.location }}</p>
 				<p><a href="{{ item.url }}">
           Learn More at {{ item.url }} </a></p>
+        
+        <div class="form-group mb-2">
+          <button type="button" 
+          class="btn btn-primary" 
+          id="edit-itinerary"> Edit </button>
+          
+          <div class="container">
+          <form action="/api/update-entry/{{ item.id }}" method="POST">
+              
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="form-group row">
+                  <label for="name-edit">Change name: </label>
+                  <input type="text"
+                        class="form-control"
+                        value="{{ item.name }}"
+                        name="name-edit">
+                </div>
+                <div class="form-group row">
+                  <label for="url-edit">Update website: </label>
+                  <input type="text"
+                        class="form-control"
+                        value="{{ item.url }}"
+                        name="url-edit">
+                </div>
+                <div class="form-group row">
+                  <label for="comment-edit">Change comments: </label>
+                  <textarea
+                        class="form-control"
+                        name="comment-edit">{{ item.comment }}
+                      </textarea>
+                </div>
+                <button type="submit" 
+                        class="btn btn-primary"> Update </button>
+              </div>
+          </form>
+        </div>
+
+        </div>
       </li>
     {% endfor %}
   </ul>
