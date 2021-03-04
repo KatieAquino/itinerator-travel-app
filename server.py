@@ -129,6 +129,22 @@ def show_entries_for_itinerary(id):
 def user_create_itinerary():
     """Allows user to create a new itinerary"""
 
+    user = crud.find_itinerary_by_user_id(session['user'])
+    name = request.form.get('new-name')
+    start_date = request.form.get('start-date')
+    end_date = request.form.get('end-date')
+
+    print('*' * 25)
+    print('start_date: ', start_date)
+
+    crud.create_itinerary(user, name, start_date, end_date)
+
+    return redirect('/profile')
+
+
+
+
+
 
 @app.route('/api/update-entry/<id>', methods=['POST'])
 def user_edit_entry(id):
