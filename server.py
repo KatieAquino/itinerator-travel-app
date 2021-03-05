@@ -142,10 +142,6 @@ def user_create_itinerary():
     return redirect('/profile')
 
 
-
-
-
-
 @app.route('/api/update-entry/<id>', methods=['POST'])
 def user_edit_entry(id):
     """Allows user to edit an entry on an itinerary"""

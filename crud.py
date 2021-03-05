@@ -120,7 +120,18 @@ def update_entry(new_name, new_comment, new_url, entry):
     db.session.commit()
 
 
+def delete_entry(entry):
+    """Deletes an entry"""
 
+    db.session.delete(entry)
+    db.session.commit()
+
+
+def delete_itinerary(itinerary):
+    """Deletes an itinerary"""
+
+    db.session.delete(itinerary)
+    db.session.commit()
 
 if __name__ == '__main__':
     from server import app
