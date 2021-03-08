@@ -4,7 +4,63 @@
 
 
 {% block body %}
-  <ul> <H2>Upcoming adventures:</H2>
+  <ul> <H2>{{ itinerary.name }}</H2>
+        <p>{{ itinerary.start_date }}</p>
+
+        <button type="button"
+                class="btn btn-primary"
+                id="add-entry">Add Entry</button>
+        
+        <div class="container" id="new-entry-form">
+          <form action="/api/new-entry" method="POST" id="entry-form">
+            <div class="form-group mx-sm-3 mb-2">
+              <div class="form-gropu row">
+                <label for="new-name">Name: </label>
+                <input type="text"
+                        class="form-control"
+                        name="new-name"
+                        required>
+              </div>
+              <div class="form-group row">
+                <label for="new-location">Address: </label>
+                <input type="text"
+                      class="form-control"
+                      name="new-location">
+              </div>
+              <div class="form-group row">
+                <label for="description">Description: </label>
+                <textarea class="form-control"
+                          name="description"></textarea>
+              </div>
+              <div class="form-group-row">
+                <label for="new-url">Website: </label>
+                <input type="url"
+                      class="form-control"
+                      name="new-url">
+              </div>
+              <div class="form-group row">
+                <label for="image-url">Link to Photo:</label>
+                <input type="url"
+                      class="form-control"
+                      name="image-url">
+              </div>
+              <div class="form-group row">
+                <label for="add-comment">Any comments to save?</label>
+                <textarea class="form-control"
+                          name="add-comment"></textarea>
+              </div>
+              <div class="form-group row">
+                <label for="trip-day">What day are you going?</label>
+                  <input type="date"
+                        class="form-control"
+                        name="trip-day">
+              </div>
+              <button type="submit"
+                      class="btn btn-primary"
+                      id="submit-entry">Submit</button>
+            </div>
+          </form>
+        </div>
     
     {% for item in entry_details %}
       <li>
