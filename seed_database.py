@@ -22,21 +22,21 @@ mickey_mouse = create_user( username = 'mickeymouse',
                             fname = 'Mickey',
                             lname = 'Mouse')
 
-minnie_mouse = User(    username = 'minniemouse',
+minnie_mouse = create_user(    username = 'minniemouse',
                         email = 'dotsandbows@test.com',
                         password = '456password',
                         fname = 'Minnie',
                         lname = 'Mouse'
                         )
 
-donald_duck = User(     username = 'donaldduck',
+donald_duck = create_user(     username = 'donaldduck',
                         email = 'dduck@test.com',
                         password = '789password',
                         fname = 'Donald',
                         lname = 'Duck'
                         )
 
-daisy_duck = User(      username = 'daisyduck',
+daisy_duck = create_user(      username = 'daisyduck',
                         email = 'daisybow@test.com',
                         password = 'donaldstopnow',
                         fname = 'Daisy',
