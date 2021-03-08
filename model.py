@@ -19,7 +19,7 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(128))
 
-    #hash password for database security
+    # hash password for database security
     def set_password(self, password):
         """Hash password for security"""
 
@@ -102,6 +102,7 @@ class EntryType(db.Model):
     def __repr__(self):
         return f'<EntryType id={self.id}, place_type_id={self.place_type_id}'
 
+
 def connect_to_db(flask_app, db_uri='postgresql:///testdb', echo=True):
     """Connect to database"""
 
@@ -113,6 +114,7 @@ def connect_to_db(flask_app, db_uri='postgresql:///testdb', echo=True):
     db.init_app(flask_app)
 
     print('Connected to the db!')
+
 
 if __name__ == '__main__':
     from server import app

@@ -74,6 +74,12 @@ def find_itinerary_by_user(user):
     return Itinerary.query.filter(Itinerary.user == user).all()
 
 
+def find_itinerary_by_id(id):
+    """Finds and returns an itinerary by id."""
+
+    return Itinerary.query.get(id)
+
+
 def create_new_type(place_type):
     """Create and return a new place type"""
 
@@ -118,6 +124,9 @@ def update_entry(new_name, new_comment, new_url, entry):
     entry.url = new_url
 
     db.session.commit()
+
+
+# def update_itinerary()
 
 
 def delete_entry(entry):

@@ -120,9 +120,11 @@ def show_entries_for_itinerary(id):
     """Display entries for itinerary"""
 
     entry_details = crud.find_entries_by_itinerary(id)
+    itinerary = crud.find_itinerary_by_id(id)
 
     return render_template('itinerary_details.html',
-                            entry_details=entry_details)
+                            entry_details=entry_details,
+                            itinerary=itinerary)
 
 
 @app.route('/api/create-itinerary', methods=['POST'])
@@ -160,6 +162,16 @@ def user_edit_entry(id):
     return redirect('/profile')
 
 
+@app.route('/api/delete-entry/<id>', methods=['POST'])
+def user_delete_entry(id):
+    """Allows user to delete an entry from an itinerary."""
+
+
+    entry = crud.find_entry_by_id(id)
+    crud.delete_entry(entry)
+
+    flash(f'Successfully updated your itinerary.')
+    return redirect('/profile')
 
 
 if __name__ == '__main__':

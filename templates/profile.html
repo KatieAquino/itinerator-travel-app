@@ -6,25 +6,71 @@
 {% block body %}
   <h1>Hi {{ username }}!</h1>
   <ul> <H2>Upcoming adventures:</H2>
+    <div>
+    <!-- Edit an itinerary -->
+    <button type="button" 
+              class="btn btn-primary" 
+              data-toggle="collapse"
+              data-target="edit-form"
+              id="edit-itinerary"> Edit Itinerary</button>
+
+        <div class="container">
+          <div class="collapse" id="edit-form">
+          <form action="/api/edit-itinerary" method="POST">
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="form-group-row">
+                  <label for="select-itinerary">Itinerary</label>
+                  <select class="custom-select mr-sm-2" id="select-itinerary">
+                    <option selected>Choose...</option>
+                    {% for item in itineraries %}
+                      <option value={{ item.id }}>{{ item.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group row">
+                  <label for="edit-name">Update Name: </label>
+                  <input type="text"
+                        class="form-control"
+                        placehoder="Update name?""
+                        name="edit-name">
+                </div>
+                <div class="form-group row">
+                  <label for="edit-start-date">Update Start Date: </label>
+                  <input type="date"
+                        class="form-control"
+                        name="edit-start-date">
+                </div>
+                <div class="form-group row">
+                  <label for="edit-end-date">Update End Date: </label>
+                  <input type="date"
+                        class="form-control"
+                        name="edit-end-date">
+                </div>
+                <button type="submit" 
+                        class="btn btn-primary"> Update </button>
+      </div>
+    </form>
+    </div>
+    </div>
+    <div>
     {% for item in itineraries %}
       <li>
         <h3><a href="/itinerary/{{ item.id }}">
           {{ item.name }}</a></h3>
-          <button type="button" 
-              class="btn btn-primary" 
-              id="edit-itinerary"> Edit </button>
         <p>{{ item.start_date }}</p>
+        
       </li>
       
     {% endfor %}
   </ul>
+</div>
 
   <div class="form-group mb-2">
     <button type="button" 
     class="btn btn-primary" 
     id="new-itinerary"> Create New Itinerary </button>
 
-    <div class="container">
+    <div class="container" id="itinerary-form">
       <form action="/api/create-itinerary" method="POST">
           
           <div class="form-group mx-sm-3 mb-2">
