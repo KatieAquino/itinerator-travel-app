@@ -174,6 +174,31 @@ def user_delete_entry(id):
     return redirect('/profile')
 
 
+@app.route('/api/new-entry', methods=['POST'])
+def user_add_entry():
+    """Allows user to add a new entry to an existing itinerary."""
+
+    name = request.form.get('new-name')
+    description = request.form.get('description')
+    url = request.form.get('new-url')
+    image = request.form.get('image-url')
+    comment = request.form.get('add-comment')
+    location = request.form.get('new-location')
+    trip_day = request.form.get('trip-day')
+
+    itinerary = crud.find_itinerary_by_user_id(session['user'])
+    crud.create_entry(  itinerary.id,
+                        name,
+                        description,
+                        url,
+                        image,
+                        comment,
+                        location,
+                        trip_day,)
+
+    return redirect(f'/itinerary/{itinerary.id}')
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', port='5757', debug=True)

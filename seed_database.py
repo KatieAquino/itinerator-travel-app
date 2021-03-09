@@ -3,7 +3,7 @@
 import os
 import json
 from random import choice, randint
-from datetime import datetime
+from datetime import datetime, date
 
 from model import *
 from crud import create_user

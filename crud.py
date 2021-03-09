@@ -47,11 +47,10 @@ def create_itinerary(user, name, start_date, end_date):
     return new_itinerary
 
 
-def create_entry(itinerary, name, description, url, image, comment, location, trip_day, complete=False):
+def create_entry(itinerary_id, name, description, url, image, comment, location, trip_day, complete=False):
     """Create and return a new entry"""
 
     new_entry = Entry(
-                    itinerary=itinerary,
                     name=name,
                     description=description,
                     url=url,
@@ -59,7 +58,8 @@ def create_entry(itinerary, name, description, url, image, comment, location, tr
                     comment=comment,
                     location=location,
                     trip_day=trip_day,
-                    complete=complete
+                    itinerary_id=itinerary_id,
+                    complete=complete                    
     )
 
     db.session.add(new_entry)

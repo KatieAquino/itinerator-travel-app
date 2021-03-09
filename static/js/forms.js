@@ -15,6 +15,26 @@ $('#edit-entry').click(function () {
     });
 });
 
+
+$('#add-entry').click(function () {
+    $('#new-entry-form').show('slow', function(){
+
+    });
+});
+
+$('#submit-entry').on('submit'), (evt) => {
+    evt.preventDefault();
+    
+    const entryData = $('#entry-form').serialize();
+    const url = '/api/new-entry'
+    console.log(entryData)
+    $.post(url, entryData, (res) => {
+
+    });
+
+    window.location.reload();
+}
+
 $('#delete-entry').on('click', (evt) => {
     evt.preventDefault();
 
