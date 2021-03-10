@@ -5,7 +5,7 @@
 
 {% block body %}
   <h1>Hi {{ username }}!</h1>
-  <ul> <H2>Upcoming adventures:</H2>
+  <H2>Upcoming adventures:</H2>
     <div>
     <!-- Edit an itinerary -->
     <button type="button" 
@@ -50,15 +50,47 @@
                         class="btn btn-primary"> Update </button>
       </div>
     </form>
+    
     </div>
     </div>
     <div>
+      <ul>
     {% for item in itineraries %}
       <li>
         <h3><a href="/itinerary/{{ item.id }}">
           {{ item.name }}</a></h3>
         <p>{{ item.start_date }}</p>
-        
+        <button type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#delete-itinerary-modal-{{ item.id}}">Delete</button>
+            <div class="modal fade"
+                  id="delete-itinerary-modal-{{ item.id }}"
+                  tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal-delete-title">{{item.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you would like to delete {{item.name}} from your itinerary?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    
+                    <form id="delete-itinerary" method="POST">
+                      <button type="button" 
+                              class="btn btn-primary"
+                              name="{{item.id}}"
+                              value="{{item.id}}"
+                              id="delete-itinerary-confirmed">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
       </li>
       
     {% endfor %}

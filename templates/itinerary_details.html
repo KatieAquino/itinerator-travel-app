@@ -14,7 +14,7 @@
         <div class="container" id="new-entry-form">
           <form action="/api/new-entry" method="POST" id="entry-form">
             <div class="form-group mx-sm-3 mb-2">
-              <div class="form-gropu row">
+              <div class="form-group row">
                 <label for="new-name">Name: </label>
                 <input type="text"
                         class="form-control"
@@ -55,6 +55,10 @@
                         class="form-control"
                         name="trip-day">
               </div>
+              <input type="hidden" 
+                      id="itinerary-id" 
+                      name="itinerary-id"
+                      value="{{ itinerary.id }}">
               <button type="submit"
                       class="btn btn-primary"
                       id="submit-entry">Submit</button>
@@ -77,7 +81,7 @@
             id="edit-entry"> Edit </button>
   
             <div class="container" id="entry-form-edit">
-            <form action="/api/update-entry/{{ item.id }}" method="POST">
+            <form action="/api/update-entry/{{ item.itinerary_id }}" method="POST">
   
                 <div class="form-group mx-sm-3 mb-2">
                   <div class="form-group row">
@@ -109,9 +113,9 @@
             <button type="button"
                     class="btn btn-primary"
                     data-toggle="modal"
-                    data-target="#delete-entry-modal">Delete</button>
+                    data-target="#delete-entry-modal-{{ item.id }}">Delete</button>
             <div class="modal fade"
-                  id="delete-entry-modal"
+                  id="delete-entry-modal-{{ item.id }}"
                   tabindex="-1">
               <div class="modal-dialog">
                 <div class="modal-content">

@@ -28,14 +28,14 @@ def find_user_by_email(email):
 def find_itinerary_by_user_id(user_id):
     """Find user by user id"""
 
-    return User.query.filter(User.id == user_id).first()
+    return Itinerary.query.filter(User.id == user_id).first()
 
 
-def create_itinerary(user, name, start_date, end_date):
+def create_itinerary(user_id, name, start_date, end_date):
     """Create and return a new itinerary"""
 
     new_itinerary = Itinerary(
-                            user=user,
+                            user_id=user_id,
                             name=name,
                             start_date=start_date,
                             end_date=end_date,

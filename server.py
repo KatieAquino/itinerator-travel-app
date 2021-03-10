@@ -80,6 +80,8 @@ def show_user_places():
 
     place = request.args.get('search_input')
     
+    user = crud.find_itinerary_by_user_id(session['user'])
+    itineraries = crud.find_itinerary_by_user(user)
 
     location_coord = APIfunctions.get_place_coordinates(place)
     
@@ -90,7 +92,8 @@ def show_user_places():
     # return jsonify({'places': poi_details})
     return render_template('search_results.html', 
                             poi_details=poi_details,
-                            place=place)
+                            place=place,
+                            itineraries=itineraries)
 
 
 @app.route('/profile')
@@ -139,8 +142,20 @@ def user_create_itinerary():
     print('*' * 25)
     print('start_date: ', start_date)
 
-    crud.create_itinerary(user, name, start_date, end_date)
+    crud.create_itinerary(user.id, name, start_date, end_date)
 
+    return redirect('/profile')
+
+
+@app.route('/api/delete-itinerary/<id>', methods=['POST'])
+def user_delete_itinerary(id):
+    """Allows user to delete an itinerary."""
+
+
+    itinerary = crud.find_itinerary_by_id(id)
+    crud.delete_itinerary(itinerary)
+
+    flash(f'Successfully deleted your itinerary.')
     return redirect('/profile')
 
 
@@ -185,9 +200,12 @@ def user_add_entry():
     comment = request.form.get('add-comment')
     location = request.form.get('new-location')
     trip_day = request.form.get('trip-day')
+    itinerary_id = request.form.get('itinerary-id')
 
-    itinerary = crud.find_itinerary_by_user_id(session['user'])
-    crud.create_entry(  itinerary.id,
+    # itinerary = crud.find_itinerary_by_id(int(itinerary_id))
+    print(itinerary_id)
+    print('*' * 100)
+    crud.create_entry(  int(itinerary_id),
                         name,
                         description,
                         url,
@@ -196,7 +214,7 @@ def user_add_entry():
                         location,
                         trip_day,)
 
-    return redirect(f'/itinerary/{itinerary.id}')
+    return redirect(f'/itinerary/{itinerary_id}')
 
 
 if __name__ == '__main__':
