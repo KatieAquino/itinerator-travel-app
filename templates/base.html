@@ -16,28 +16,28 @@
   crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/styles.css">
     
-    
-  {% block head %}
-    <nav>
-      <div>
-        <a href="/">Home</a>
-          <div class="nav-search">
-            <div class="form-group mb-2">
-              <form action="/api/destination/search" class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                  <input 
-                    type="search"
-                    class="form-control"
-                    placeholder="Where are you heading?" 
-                    name="search_input"  />
-                  <button type="button" class="btn btn-primary"> Go </button>
-                </div>
-              </form>
-            </div>
+  <nav>
+    <div>
+      <a href="/">Home</a>
+        <div class="nav-search">
+          <div class="form-group mb-2">
+            <form action="/api/destination/search" class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <input 
+                  type="search"
+                  class="form-control"
+                  placeholder="Where are you heading?" 
+                  name="search_input"  />
+                <button type="button" class="btn btn-primary"> Go </button>
+              </div>
+            </form>
           </div>
-        <a href="/profile">Profile</a>
         </div>
-      </nav>
+      <a href="/profile">Profile</a>
+      </div>
+    </nav>
+  {% block head %}
+    
   {% endblock %}
 </head>
 
