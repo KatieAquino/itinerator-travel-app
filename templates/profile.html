@@ -20,7 +20,9 @@
               <div class="form-group mx-sm-3 mb-2">
                 <div class="form-group-row">
                   <label for="select-itinerary">Itinerary</label>
-                  <select class="custom-select mr-sm-2" id="select-itinerary">
+                  <select class="custom-select mr-sm-2" 
+                          id="select-itinerary"
+                          name='itinerary-id'>
                     <option selected>Choose...</option>
                     {% for item in itineraries %}
                       <option value={{ item.id }}>{{ item.name }}</option>

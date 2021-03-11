@@ -151,12 +151,33 @@ def user_create_itinerary():
 def user_delete_itinerary(id):
     """Allows user to delete an itinerary."""
 
-
     itinerary = crud.find_itinerary_by_id(id)
     crud.delete_itinerary(itinerary)
 
     flash(f'Successfully deleted your itinerary.')
     return redirect('/profile')
+
+
+@app.route('/api/edit-itinerary', methods=['POST'])
+def user_edit_itinerary():
+    """Allows user to edit an itinerary."""
+
+    itinerary_id = request.form.get('itinerary-id')
+    name = request.form.get('edit-name')
+    start_date = request.form.get('edit-start-date')
+    end_date = request.form.get('edit-end-date')
+
+    print(name)
+    print('*' * 100)
+    print(itinerary_id)
+
+    itinerary = crud.find_itinerary_by_id(itinerary_id)
+    print(itinerary)
+
+    crud.update_itinerary(itinerary, name, start_date, end_date)
+
+    return redirect('/profile')
+
 
 
 @app.route('/api/update-entry/<id>', methods=['POST'])

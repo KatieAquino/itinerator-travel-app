@@ -77,7 +77,7 @@ def find_itinerary_by_user(user):
 def find_itinerary_by_id(id):
     """Finds and returns an itinerary by id."""
 
-    return Itinerary.query.get(id)
+    return Itinerary.query.filter(Itinerary.id == id).first()
 
 
 def create_new_type(place_type):
@@ -126,7 +126,14 @@ def update_entry(new_name, new_comment, new_url, entry):
     db.session.commit()
 
 
-# def update_itinerary()
+def update_itinerary(itinerary, name, start_date, end_date):
+    """Updates itinerary information based on user input."""
+
+    itinerary.name = name
+    itinerary.start_date = start_date
+    itinerary.end_date = end_date
+
+    db.session.commit()
 
 
 def delete_entry(entry):
