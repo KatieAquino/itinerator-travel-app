@@ -38,6 +38,7 @@ const CarouselHome = (props) =>{
               src="static/images/grand-central-terminal.JPG"
               alt="A clock in Grand Central Terminal in New York City." />
       </Carousel.Item>
+
     </Carousel>
   );
 }

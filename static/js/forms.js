@@ -9,11 +9,11 @@ $('#edit-itinerary').click(function(){
 });
 
 
-$('#edit-entry').click(function () {
-    $('#entry-form-edit').toggle('slow', function() {
+// $('#edit-entry').click(function () {
+//     $('#entry-form-edit').toggle('slow', function() {
 
-    });
-});
+//     });
+// });
 
 
 $('#add-entry').click(function () {

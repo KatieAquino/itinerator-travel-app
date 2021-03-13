@@ -10,11 +10,22 @@ body {
 	display: none;
 }
 
-#entry-form-edit{
-	display: none;
-}
 
 #new-entry-form{
 	display: none;
 }
 
+.card-columns {
+	column-count: 4;
+}
+.card-img-top {
+	object-fit: cover;
+}
+.card-horizontal {
+	display: flex;
+	flex: 1 1 auto
+}
+
+.entry-card img {
+	width: 30%;
+}

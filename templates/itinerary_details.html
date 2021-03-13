@@ -5,7 +5,7 @@
 
 {% block body %}
   <ul> <H2>{{ itinerary.name }}</H2>
-        <p>{{ itinerary.start_date }}</p>
+        <p id="itinerary-start-date">{{ itinerary.start_date }}</p>
 
         <button type="button"
                 class="btn btn-primary"
@@ -66,21 +66,50 @@
           </form>
         </div>
     
+    <div class="container-fluid">
+      <div class="row justify-content-md-center">
+        <div class="col-md-8">
+      
     {% for item in entry_details %}
-      <li>
-        <h3>{{ item.name }}</h3>
-        <img src="{{ item.image }}" />
-				<p>{{ item.comment }}</p>
-				<p>{{ item.location }}</p>
-				<p><a href="{{ item.url }}">
-          Learn More at {{ item.url }} </a></p>
-        
+    
+      <div  class="card-horizontal" 
+            id="{{ item.xid }}">
+        <div class="img-square-wrapper">
+          {% if item.image == None or item.image == '' %}
+          <img class="entry-card"
+                src="{{ url_for('static', filename = 'images/CompassLogo.jpeg') }}">
+          
+          {% else %}
+          <img  class="entry-card"
+                src="{{ item.image }}">
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text">{{ item.comment }}</p>
+          <p class="card-text">
+            <small class="text-muted">
+              <a href="{{ item.url}}">More Information</a>
+            </small>
+          </p>
+      </div>
+        <div class="card-footer">
           <div class="form-group mb-2">
             <button type="button" 
             class="btn btn-primary" 
+            data-toggle="collapse"
+            data-target="#entry-edit-{{ item.id }}"
+            href="#entry-edit-{{ item.id }}"
             id="edit-entry"> Edit </button>
+        </div>
+      </div>
+    </div>
+        
+        
+        
   
-            <div class="container" id="entry-form-edit">
+            <div class="container" id="entry-edit-{{ item.id }}">
             <form action="/api/update-entry/{{ item.itinerary_id }}" method="POST">
   
                 <div class="form-group mx-sm-3 mb-2">
@@ -143,9 +172,12 @@
             </div>
           </div>
   
-          </div>
-        </li>
+          
       {% endfor %}
+    </div>
+    </div>
+    </div>
+  </div>
     </ul>
 
 {% endblock %}

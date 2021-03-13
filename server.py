@@ -223,7 +223,6 @@ def user_add_entry():
     trip_day = request.form.get('trip-day')
     itinerary_id = request.form.get('itinerary-id')
 
-    # itinerary = crud.find_itinerary_by_id(int(itinerary_id))
     print(itinerary_id)
     print('*' * 100)
     crud.create_entry(  int(itinerary_id),
