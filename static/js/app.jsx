@@ -18,22 +18,22 @@ const CarouselHome = (props) =>{
   var Carousel = ReactBootstrap.Carousel
   return (
     <Carousel>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2000}>
         <img  className="d-block w-100"
               src={"static/images/shibuya-crossing.JPG"}
               alt="Shibuya crossing in Tokyo, Japan during the rain." />
       </Carousel.Item>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2000}>
         <img  className="d-block w-100"
               src="static/images/Schladming-Austria.JPG"
               alt="A view of the Dachstein mountain range from Schladming, Austria" />
       </Carousel.Item>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2000}>
         <img  className="d-block w-100"
               src="static/images/twelve-apostles.JPG"
               alt="The Twelve Apostles in the Pacific Ocean near Victoria, Australia." />
       </Carousel.Item>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2000}>
         <img  className="d-block w-100"
               src="static/images/grand-central-terminal.JPG"
               alt="A clock in Grand Central Terminal in New York City." />

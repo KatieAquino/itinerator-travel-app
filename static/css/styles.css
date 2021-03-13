@@ -29,3 +29,10 @@ body {
 .entry-card img {
 	width: 30%;
 }
+
+.navbar-brand img {
+
+	border-radius: 50%;
+}
+
+

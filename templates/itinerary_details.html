@@ -4,6 +4,7 @@
 
 
 {% block body %}
+
   <ul> <H2>{{ itinerary.name }}</H2>
         <p id="itinerary-start-date">{{ itinerary.start_date }}</p>
 
@@ -77,8 +78,8 @@
         <div class="img-square-wrapper">
           {% if item.image == None or item.image == '' %}
           <img class="entry-card"
-                src="{{ url_for('static', filename = 'images/CompassLogo.jpeg') }}">
-          
+                src="{{ url_for('static', filename = 'images/CompassLogo.png') }}">
+                
           {% else %}
           <img  class="entry-card"
                 src="{{ item.image }}">

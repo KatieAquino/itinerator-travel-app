@@ -7,6 +7,7 @@
   <title>
     {% block title %}Itinerator{% endblock %}
   </title>
+  
   <!-- CSS & Bootstrap -->
   <link rel="stylesheet" 
   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
@@ -16,9 +17,25 @@
   crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/styles.css">
     
-  <nav>
-    <div>
-      <a href="/">Home</a>
+  <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img  src="{{ url_for('static', filename = 'images/CompassLogo.png') }}" class="img-responsive"
+              width="35" height="35"
+              class="d-inline-block align-content-around" alt="itinerator-logo">
+              <span>Itinerator</span>
+      </a>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+      </ul>
+      
         <div class="nav-search">
           <div class="form-group mb-2">
             <form action="/api/destination/search" class="form-inline">
@@ -33,8 +50,7 @@
             </form>
           </div>
         </div>
-      <a href="/profile">Profile</a>
-      </div>
+    </div>
     </nav>
   {% block head %}
     
