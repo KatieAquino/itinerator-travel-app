@@ -4,25 +4,38 @@
 
 
 {% block body %}
-  <h1>Places to Visit in {{ place }}</h1>
-  <ul>
+<h1>Places to Visit in {{ place }}</h1>
+  <div class="container-fluid">
+  
+  <div class="row">
+    <div class="card-deck">
     {% for item in poi_details %}
-      <li id={{ item.xid }}>
-        <h2>{{ item.name }}</h2>
-        <img src="{{ item.image }}">
-        <p>{{ item.extract }}</p>
-        <a href="{{ item.wikipedia }}">
-          More information available here.
-        </a>
+    <div class="col-4">
+    <div class="card" id="{{ item.xid }}">
+      <img class="card-img-top"
+            src="{{ item.image }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{ item.extract }}</p>
+        <p class="card-text">
+          <small class="text-muted">
+            <a href="{{ item.wikipedia }}">More Information available here.</a>
+          </small>
+        </p>
+      </div>
+      <div class="card-footer">
         <p>Look interesting?</p>
         <button type="button"
                 class="btn btn-primary"
                 data-toggle="collapse"
-                data-target="#add-form"
+                data-target="#add-form-{{ item.xid }}"
+                href="add-form-{{ item.xid }}"
                 id="add-{{ item.name }}">Add to Trip</button>
+      </div>
+    </div>
 
           <div class="container">
-            <div class="collapse" id="add-form">
+            <div class="collapse" id="add-form-{{ item.xid }}">
               <form action="/api/new-entry" method="POST" id="entry-form">
                 <div class="form-group mx-sm-3 mb-2">
                   <div class="form-group row">
@@ -92,8 +105,11 @@
               </form>
             </div>
           </div>
-      </li>
+      </div>
+  
+  
     {% endfor %}
-  </ul>
-
+</div>
+</div>
+</div>
 {% endblock %}
