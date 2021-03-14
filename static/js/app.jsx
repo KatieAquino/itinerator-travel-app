@@ -23,7 +23,7 @@ const CarouselHome = (props) =>{
               src="static/images/shibuya-crossing-1.JPG"
               alt="Shibuya crossing in Tokyo, Japan during the rain." />
         <Carousel.Caption>
-          <h3>Boldy Travel</h3>
+          <h3>Boldly Travel</h3>
           <UserAccount />
         </Carousel.Caption>
       </Carousel.Item>
