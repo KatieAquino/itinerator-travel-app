@@ -30,9 +30,24 @@ body {
 	width: 30%;
 }
 
+
 .navbar-brand img {
 
-	border-radius: 50%;
+	padding-top: 0;
+	height: 10%;
+	width: 10%;
 }
 
+.navbar-brand {
+	align-self: flex-start;
+}
 
+.navbar .navbar-nav {
+	display: inline-flexbox;
+	float: none;
+	vertical-align: top;
+}
+
+.carousel-caption {
+	background: #696b6d80;
+}

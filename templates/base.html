@@ -19,14 +19,14 @@
     
   <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img  src="{{ url_for('static', filename = 'images/CompassLogo.png') }}" class="img-responsive"
-              width="35" height="35"
+      <a class="navbar-brand" href="/">
+        <img  src="{{ url_for('static', filename = 'images/CompassLogo.png') }}" class="img-fluid"
+              width="10" height="40"
               class="d-inline-block align-content-around" alt="itinerator-logo">
-              <span>Itinerator</span>
+              <span class="font-weight-bold">Itinerator</span>
       </a>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-md-auto">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -35,23 +35,17 @@
           <a class="nav-link" href="/profile">Profile</a>
         </li>
       </ul>
-      
-        <div class="nav-search">
-          <div class="form-group mb-2">
-            <form action="/api/destination/search" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <input 
-                  type="search"
-                  class="form-control"
-                  placeholder="Where are you heading?" 
-                  name="search_input"  />
-                <button type="button" class="btn btn-primary"> Go </button>
-              </div>
-            </form>
-          </div>
-        </div>
+      <form action="/api/destination/search" class="form-inline my-2 my-lg-0">
+        <input 
+          type="search"
+          class="form-control mr-sm-2"
+          placeholder="Where are you heading?" 
+          name="search_input"  />
+        <button type="submit" 
+                class="btn btn-primary my-2 my-sm-0"> Go </button>
+      </form>
     </div>
-    </nav>
+  </nav>
   {% block head %}
     
   {% endblock %}
