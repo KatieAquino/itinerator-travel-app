@@ -1,5 +1,11 @@
 body {
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
+	background-image: url('static/images/stardust.png') !important;
+	background-repeat: repeat;
+}
+.bg-image {
+	background-image: url('static/images/stardust.png') !important;
+	background-repeat: repeat;
 }
 
 #itinerary-form {
@@ -40,6 +46,7 @@ body {
 
 .navbar-brand {
 	align-self: flex-start;
+
 }
 
 .navbar .navbar-nav {

@@ -32,7 +32,7 @@ const CarouselHome = (props) =>{
               src="static/images/Schladming-Austria.JPG"
               alt="A view of the Dachstein mountain range from Schladming, Austria" />
         <Carousel.Caption>
-          <h3>Boldy Travel</h3>
+          <h3>Boldly Travel</h3>
           <UserAccount />
         </Carousel.Caption>
       </Carousel.Item>
@@ -41,7 +41,7 @@ const CarouselHome = (props) =>{
               src="static/images/twelve-apostles.png"
               alt="The Twelve Apostles in the Pacific Ocean near Victoria, Australia." />
       <Carousel.Caption>
-          <h3>Boldy Travel</h3>
+          <h3>Boldly Travel</h3>
           <UserAccount />
         </Carousel.Caption>
       </Carousel.Item>
@@ -50,7 +50,7 @@ const CarouselHome = (props) =>{
               src="static/images/grand-central-terminal.png"
               alt="A clock in Grand Central Terminal in New York City." />
       <Carousel.Caption>
-          <h3>Boldy Travel</h3>
+          <h3>Boldly Travel</h3>
           <UserAccount />
         </Carousel.Caption>
       
