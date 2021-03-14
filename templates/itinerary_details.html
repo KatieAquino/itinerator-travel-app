@@ -69,32 +69,44 @@
     
     <div class="container-fluid">
       <div class="row justify-content-md-center">
-        <div class="col-md-8">
+        <!-- <div class="col-md-8"> -->
       
     {% for item in entry_details %}
     
-      <div  class="card-horizontal" 
+      <div  class="card mb-3"
+            style="max-width: 800px"
             id="{{ item.xid }}">
-        <div class="img-square-wrapper">
-          {% if item.image == None or item.image == '' %}
-          <img class="entry-card"
-                src="{{ url_for('static', filename = 'images/CompassLogo.png') }}">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if item.image == None or item.image == '' %}
+                  <img  class="card-img"
+                        src="{{ url_for('static', filename = 'images/CompassLogo.png') }}"
+                        >
                 
-          {% else %}
-          <img  class="entry-card"
-                src="{{ item.image }}">
-          {% endif %}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ item.name }}</h5>
-          <p class="card-text">{{ item.description }}</p>
-          <p class="card-text">{{ item.comment }}</p>
-          <p class="card-text">
-            <small class="text-muted">
-              <a href="{{ item.url}}">More Information</a>
-            </small>
-          </p>
-      </div>
+                {% else %}
+                  <img  class="card-img"
+                        src="{{ item.image }}"
+                        >
+                {% endif %}
+              </div>
+              <div class="col-md-8">
+                <div class="card-body" style="text-align: center;">
+                  <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
+                  <p class="card-text">{{ item.comment }}</p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      <a href="{{ item.url}}">More Information</a>
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+            
+        
         <div class="card-footer">
           <div class="form-group mb-2">
             <button type="button" 
@@ -103,7 +115,7 @@
             data-target="#entry-edit-{{ item.id }}"
             href="#entry-edit-{{ item.id }}"
             id="edit-entry"> Edit </button>
-        </div>
+        </div> 
       </div>
     </div>
         
