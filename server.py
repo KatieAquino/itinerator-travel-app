@@ -46,7 +46,7 @@ def log_in_user():
 
 
 @app.route('/api/create-account', methods=['POST'])
-def create_new_account():
+def create_account():
     """Create a new account"""
 
     username = request.form.get('new-username')
@@ -79,6 +79,7 @@ def show_user_places():
     """Display places for searched destination"""
 
     place = request.args.get('search_input')
+    place = place.title()
     
     user = crud.find_itinerary_by_user_id(session['user'])
     itineraries = crud.find_itinerary_by_user(user)

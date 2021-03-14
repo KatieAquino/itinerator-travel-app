@@ -52,11 +52,11 @@ $('#delete-entry').on('click', (evt) => {
     window.location.replace('/profile')
 });
 
-$('#delete-itinerary').on('click', (evt) => {
+$('#delete-itinerary-confirmed').on('click', (evt) => {
     evt.preventDefault();
     console.log('delete button clicked')
     const deleteItinerary = {
-        id: $('#delete-itinerary-confirmed').val()
+        id: $('#delete-itinerary-id').val()
     };
     let url = (`/api/delete-itinerary/${deleteItinerary['id']}`);
     console.log(deleteItinerary);

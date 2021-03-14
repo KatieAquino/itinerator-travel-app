@@ -4,16 +4,84 @@
 
 
 {% block body %}
-  <h1>Hi {{ username }}!</h1>
-  <H2>Upcoming adventures:</H2>
-    <div>
-    <!-- Edit an itinerary -->
-    <button type="button" 
+  <div class="container-fluid">
+    <div  class="row justify-content-md-center align-content-center mt-2" 
+          style="text-align: center;">
+      <div class="col-md-4">
+        <h1>Hi {{ username }}!</h1>
+        <H3>Upcoming Adventures:</H3>
+      </div>
+    </div>
+    <div class="row justify-content-md-center align-content-center pb-lg-9 mb-4 mt-3">
+      <div class="col-md-4">
+        <div class="btn-group" role="group">
+
+          <button type="button" 
               class="btn btn-primary" 
               data-toggle="collapse"
               data-target="edit-form"
               id="edit-itinerary"> Edit Itinerary</button>
 
+            <button type="button" 
+                    class="btn btn-primary" 
+                    id="new-itinerary"> Create New Itinerary </button>
+            
+            <button type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#delete-itinerary-modal"
+                    >Delete Itinerary</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <!-- Delete an itinerary -->
+    <div  class="modal fade"
+          id="delete-itinerary-modal"
+          tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-delete-title">Delete Itinerary</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+            <div class="modal-body">
+              <form id="delete-itinerary" method="POST">
+                <div class="form-group">
+                  <label for="select-itinerary-delete">
+                    Which itinerary would you like to delete?</label>
+                  <select class="custom-select mr-sm-2" 
+                          id="delete-itinerary-id"
+                          name='delete-itinerary-id'>
+                    <option selected>Choose...</option>
+                      {% for item in itineraries %}
+                    <option value={{ item.id }}>{{ item.name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              
+              <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
+                <button type="submit" 
+                        class="btn btn-danger"
+                        id="delete-itinerary-confirmed">Delete</button>
+                      </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+          
+        </div>
+  
+
+    <div>
+    <!-- Edit an itinerary form-->
         <div class="container">
           <div class="collapse" id="edit-form">
           <form action="/api/edit-itinerary" method="POST">
@@ -56,81 +124,65 @@
     </div>
     </div>
     <div>
-      <ul>
+<!-- Create new Itinerary -->
+<div class="container" id="itinerary-form">
+  <form action="/api/create-itinerary" method="POST">
+      
+      <div class="form-group mx-sm-3 mb-2">
+        <div class="form-group row">
+          <label for="new-name">Name: </label>
+          <input type="text"
+                class="form-control"
+                placehoder="Where are heading?""
+                name="new-name">
+        </div>
+        <div class="form-group row">
+          <label for="start-date">Start Date: </label>
+          <input type="date"
+                class="form-control"
+                name="start-date">
+        </div>
+        <div class="form-group row">
+          <label for="end-date">End Date: </label>
+          <input type="date"
+                class="form-control"
+                name="end-date">
+        </div>
+        <button type="submit" 
+                class="btn btn-primary"> Create </button>
+      </div>
+  </form>
+</div>
+
+
+<!-- loop through itineraries to display -->
+<div class="container">
     {% for item in itineraries %}
-      <li>
-        <h3><a href="/itinerary/{{ item.id }}">
-          {{ item.name }}</a></h3>
-        <p>{{ item.start_date }}</p>
-        <button type="button"
-                    class="btn btn-primary"
-                    data-toggle="modal"
-                    data-target="#delete-itinerary-modal-{{ item.id}}">Delete</button>
-            <div class="modal fade"
-                  id="delete-itinerary-modal-{{ item.id }}"
-                  tabindex="-1">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modal-delete-title">{{item.name}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                    Are you sure you would like to delete {{item.name}} from your itinerary?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    
-                    <form id="delete-itinerary" method="POST">
-                      <button type="button" 
-                              class="btn btn-primary"
-                              name="{{item.id}}"
-                              value="{{item.id}}"
-                              id="delete-itinerary-confirmed">Delete</button>
-                    </form>
+      <div class="row justify-content-md-center align-content-center mb-3">
+        <div class="col d-flex justify-content-md-center">
+          <div class="card" style="width: 24rem">
+        <div class="card-body">
+          <h5 class="card-header mb-1"><a href="/itinerary/{{ item.id }}">
+            {{ item.name }}</a></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Leaving: {{ item.start_date }}</li>
+          <li class="list-group-item">Coming home: {{ item.end_date }}</li>
+        </ul>
+        
                   </div>
                 </div>
               </div>
             </div>
-      </li>
-      
+
     {% endfor %}
-  </ul>
+        </div>
+</div>
+      
 </div>
 
-  <div class="form-group mb-2">
-    <button type="button" 
-    class="btn btn-primary" 
-    id="new-itinerary"> Create New Itinerary </button>
+  
 
-    <div class="container" id="itinerary-form">
-      <form action="/api/create-itinerary" method="POST">
-          
-          <div class="form-group mx-sm-3 mb-2">
-            <div class="form-group row">
-              <label for="new-name">Name: </label>
-              <input type="text"
-                    class="form-control"
-                    placehoder="Where are heading?""
-                    name="new-name">
-            </div>
-            <div class="form-group row">
-              <label for="start-date">Start Date: </label>
-              <input type="date"
-                    class="form-control"
-                    name="start-date">
-            </div>
-            <div class="form-group row">
-              <label for="end-date">End Date: </label>
-              <input type="date"
-                    class="form-control"
-                    name="end-date">
-            </div>
-            <button type="submit" 
-                    class="btn btn-primary"> Create </button>
-          </div>
-      </form>
-    </div>
+    
 
 {% endblock %}
