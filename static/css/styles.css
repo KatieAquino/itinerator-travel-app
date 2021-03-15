@@ -20,6 +20,9 @@ body {
 	display: none;
 }
 
+#entry-form-edit {
+	display: none;
+}
 
 #new-entry-form{
 	display: none;

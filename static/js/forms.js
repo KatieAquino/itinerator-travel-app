@@ -8,14 +8,6 @@ $('#edit-itinerary').click(function(){
     $('#edit-form').toggle('slow');
 });
 
-
-// $('#edit-entry').click(function () {
-//     $('#entry-form-edit').toggle('slow', function() {
-
-//     });
-// });
-
-
 $('#add-entry').click(function () {
     $('#new-entry-form').toggle('slow', function(){
 
