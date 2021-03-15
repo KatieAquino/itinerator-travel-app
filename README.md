@@ -20,7 +20,6 @@ Implemented:
 Future Features:
 * Allow users to mark itinerary items as complete
 * Add additional search options
-* Improve speed of application by revising data model and API calls
 
 ### Inspiration
 
