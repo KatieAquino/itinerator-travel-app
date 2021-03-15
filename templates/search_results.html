@@ -9,12 +9,13 @@
   
   
   <div class="row">
-    <div class="card-deck">
+    <div class="card-columns">
     {% for item in poi_details %}
-    <div class="col-4">
+    <!-- <div class="col-4"> -->
     <div class="card" id="{{ item.xid }}">
       <img class="card-img-top"
-            src="{{ item.image }}">
+            src="{{ item.image }}"
+            onerror="this.src='/static/images/CompassLogo.png';">
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
         <p class="card-text">{{ item.extract }}</p>
@@ -106,7 +107,7 @@
               </form>
             </div>
           </div>
-      </div>
+      <!-- </div> -->
   
   
     {% endfor %}

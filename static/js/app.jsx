@@ -10,9 +10,9 @@ const Homepage = (props) => {
     <div className="container-fluid">
       <div className="row justify-content-md-center homepage">
         <div className="col-5">
-        <h1>Welcome</h1>
+        <h1 className="homepage-text">Itinerator</h1>
         <div className="row justify-content-md-center">
-        <h2>Plan Your Next Adventure</h2>
+        <h2 className="homepage-text-small">Plan Your Next Adventure</h2>
         </div>
         </div>
       </div>

@@ -5,7 +5,7 @@
 
 {% block body %}
   <div class="container-fluid">
-    <div  class="row justify-content-md-center align-content-center mt-2" 
+    <div  class="row justify-content-center align-content-center mt-2" 
           style="text-align: center;">
       <div class="col-md-4">
         <h1>Hi {{ username }}!</h1>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row justify-content-md-center align-content-center pb-lg-9 mb-4 mt-3">
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
         <div class="btn-group" role="group">
 
           <button type="button" 
@@ -85,10 +85,10 @@
         <div class="container">
           <div class="collapse" id="edit-form">
           <form action="/api/edit-itinerary" method="POST">
-              <div class="form-group mx-sm-3 mb-2">
-                <div class="form-group-row">
+              <!-- <div class="form-group mx-sm-3 mb-2"> -->
+                <div class="form-row">
                   <label for="select-itinerary">Itinerary</label>
-                  <select class="custom-select mr-sm-2" 
+                  <select class="form-control" 
                           id="select-itinerary"
                           name='itinerary-id'>
                     <option selected>Choose...</option>
@@ -97,57 +97,70 @@
                     {% endfor %}
                   </select>
                 </div>
-                <div class="form-group row">
+                <div class="form-row">
                   <label for="edit-name">Update Name: </label>
                   <input type="text"
                         class="form-control"
                         placehoder="Update name?""
                         name="edit-name">
                 </div>
-                <div class="form-group row">
-                  <label for="edit-start-date">Update Start Date: </label>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="edit-start-date">Update Start Date: </label>
                   <input type="date"
                         class="form-control"
                         name="edit-start-date">
-                </div>
-                <div class="form-group row">
-                  <label for="edit-end-date">Update End Date: </label>
-                  <input type="date"
-                        class="form-control"
-                        name="edit-end-date">
-                </div>
-                <button type="submit" 
+                  </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="edit-end-date">Update End Date: </label>
+                        <input type="date"
+                              class="form-control"
+                              name="edit-end-date">
+              
+                    </div>
+
+                  </div>
+                  <button type="submit" 
                         class="btn btn-primary"> Update </button>
+                </div>
+                
+                
       </div>
     </form>
     
     </div>
     </div>
     <div>
+
 <!-- Create new Itinerary -->
 <div class="container" id="itinerary-form">
   <form action="/api/create-itinerary" method="POST">
       
-      <div class="form-group mx-sm-3 mb-2">
-        <div class="form-group row">
+      <div class="form-group">
+        <div class="form-row">
           <label for="new-name">Name: </label>
           <input type="text"
                 class="form-control"
                 placehoder="Where are heading?""
                 name="new-name">
         </div>
-        <div class="form-group row">
-          <label for="start-date">Start Date: </label>
-          <input type="date"
-                class="form-control"
-                name="start-date">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="start-date">Start Date: </label>
+            <input  type="date"
+                    class="form-control"
+                    name="start-date">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="end-date">End Date: </label>
+            <input type="date"
+                  class="form-control"
+                  name="end-date">
+          </div>
+          
         </div>
-        <div class="form-group row">
-          <label for="end-date">End Date: </label>
-          <input type="date"
-                class="form-control"
-                name="end-date">
-        </div>
+        
         <button type="submit" 
                 class="btn btn-primary"> Create </button>
       </div>
@@ -160,11 +173,12 @@
     {% for item in itineraries %}
       <div class="row justify-content-md-center align-content-center mb-3">
         <div class="col d-flex justify-content-md-center">
-          <div class="card" style="width: 24rem">
-        <div class="card-body">
-          <h5 class="card-header mb-1"><a href="/itinerary/{{ item.id }}">
+          <div class="card bg-light mb-3 rounded border border-dark" style="width: 24rem">
+        <!-- <div class="card-body"> -->
+          <h5 class="card-header "><a class="card-link" 
+              href="/itinerary/{{ item.id }}">
             {{ item.name }}</a></h5>
-        </div>
+        <!-- </div> -->
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Leaving: {{ item.start_date }}</li>
           <li class="list-group-item">Coming home: {{ item.end_date }}</li>
