@@ -4,20 +4,21 @@ Itinerator is a web application for users to find track points of interst they w
 
 ## Tech Stack
 
-Frontend: JavaScript, React, HTML5, CSS, Bootstrap
-Backend: Python3, Flask, PostegresSql, SQLAlchemy, Jinja2
-API: OpenTripMap
+* Frontend: JavaScript, React, HTML5, CSS, Bootstrap
+* Backend: Python3, Flask, PostegresSql, SQLAlchemy, Jinja2
+* API: OpenTripMap
 
 ## Features
-Implemented
+Implemented:
 * Allows users to login or create account
 * Users can search by city for list of points of interest in a given area
-
-TODO:
+* Users can add items from search results directly to an itinerary
 * Allow users to create itinerary
 * Allow users to add items to itinerary
-* Allow users to mark itinerary items as complete
 * Allow users to delete or edit itinerary
+
+Future Features:
+* Allow users to mark itinerary items as complete
 * Add additional search options
 * Improve speed of application by revising data model and API calls
 
