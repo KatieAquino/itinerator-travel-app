@@ -41,7 +41,7 @@ $('#delete-entry').on('click', (evt) => {
 
     });
 
-    window.location.replace('/profile')
+    window.location.reload()
 });
 
 $('#delete-itinerary-confirmed').on('click', (evt) => {
