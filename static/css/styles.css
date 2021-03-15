@@ -1,11 +1,7 @@
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-image: url('static/images/stardust.png') !important;
-	background-repeat: repeat;
-}
-.bg-image {
-	background-image: url('static/images/stardust.png') !important;
-	background-repeat: repeat;
+	background-color: #5e80a5;
+	background-image: url(/static/images/brick-wall.png);
 }
 
 .homepage {
@@ -65,3 +61,19 @@ body {
 .carousel-caption {
 	background: #696b6d80;
 }
+
+.carousel {
+	background-color: #102a3f;
+	margin-top: 20px;
+	padding: 1%;
+}
+
+.btn-primary {
+	background-color: #102a3f !important;
+	border-color: #102a3f !important;
+}
+
+.btn-outline-primary {
+	background-color: #102a3f !important;
+}
+
