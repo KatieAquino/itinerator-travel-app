@@ -84,11 +84,35 @@ def show_user_places():
     user = crud.find_itinerary_by_user_id(session['user'])
     itineraries = crud.find_itinerary_by_user(user)
 
-    location_coord = APIfunctions.get_place_coordinates(place)
-    
-    poi_options = APIfunctions.get_points_of_interests(location_coord)
-    
-    poi_details = APIfunctions.get_place_info(poi_options)
+    place_found = crud.find_location_by_name(place)
+
+    if place_found:
+        poi_details = []
+        details = crud.get_place_details(place_found)
+        
+        for detail in details:
+            poi_details.append({'xid': detail.xid,
+                                'name': detail.name,
+                                'wikipedia': detail.wikipedia,
+                                'image': detail.image,
+                                'extract': detail.extract})
+        
+
+    else:
+
+        location_coord = APIfunctions.get_place_coordinates(place)
+        location = crud.create_location(place)
+        poi_options = APIfunctions.get_points_of_interests(location_coord)
+        poi_details = APIfunctions.get_place_info(poi_options)
+
+        for poi in poi_details:
+            xid = poi['xid']
+            name = poi['name']
+            wikipedia = poi['wikipedia']
+            image = poi['image']
+            extract = poi['extract']
+
+            crud.create_place(wikipedia, xid, name, image, extract, location.id)
 
     # return jsonify({'places': poi_details})
     return render_template('search_results.html', 

@@ -29,6 +29,8 @@ def get_points_of_interests(place_data, radius=20000, kinds=None):
         url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=50&apikey={API_KEY}'
         req = requests.get(url)
 
+        print(req)
+        
         return req.json()
 
     #loops through kinds to make individual request per category

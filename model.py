@@ -78,6 +78,34 @@ class Entry(db.Model):
         return f'<Entry id={self.id}, name={self.name}, location={self.location}'
 
 
+class Location(db.Model):
+    """Locations that have been searched."""
+
+    __tablename__ = 'locations'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    location = db.Column(db.String(50))
+
+    def __repr__(self):
+        return f'<Location id={self.id}, location={self.location}>'
+
+
+class Place(db.Model):
+    """Place information for user."""
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    wikipedia = db.Column(db.Text)
+    xid = db.Column(db.String(50))
+    name = db.Column(db.Text)
+    image = db.Column(db.Text)
+    extract = db.Column(db.Text)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
+
+    location = db.relationship('Location', backref='locations')
+
+    def __repr__(self):
+        return f'<Place id={self.id}, name={self.name}>'
+
 class PlaceType(db.Model):
     """Data model for a place type"""
 
@@ -87,7 +115,7 @@ class PlaceType(db.Model):
     place_type = db.Column(db.String(15))
 
     def __repr__(self):
-        return f'<PlaceType id={self.id}, place_type={self.place_type}'
+        return f'<PlaceType id={self.id}, place_type={self.place_type}>'
 
 
 class EntryType(db.Model):

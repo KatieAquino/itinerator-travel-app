@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, connect_to_db, User, Itinerary, Entry, PlaceType, EntryType
+from model import db, connect_to_db, User, Itinerary, Entry, PlaceType, EntryType, Location, Place
 
 def create_user(username, email, password, fname=None, lname=None):
     """Create and return a new user"""
@@ -148,6 +148,47 @@ def delete_itinerary(itinerary):
 
     db.session.delete(itinerary)
     db.session.commit()
+
+
+def create_location(location):
+    """Create and return a new entry type"""
+
+    new_location = Location(location=location)
+
+    db.session.add(new_location)
+    db.session.commit()
+
+    return new_location
+
+
+def find_location_by_name(name):
+    """Find and return location if in database."""
+
+    return Location.query.filter(Location.location == name).first()
+
+
+def create_place(wikipedia, xid, name, image, extract, location_id):
+    """Create and return a new place."""
+
+    new_place = Place(  wikipedia=wikipedia,
+                        xid=xid,
+                        name=name,
+                        image=image,
+                        extract=extract,
+                        location_id=location_id)
+
+    db.session.add(new_place)
+    db.session.commit()
+
+    return new_place
+
+
+def get_place_details(location):
+    """Find and return place details."""
+
+    place_details = Place.query.filter(Place.location_id == location.id).all()
+
+    return place_details
 
 if __name__ == '__main__':
     from server import app
