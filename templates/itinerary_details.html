@@ -77,7 +77,7 @@
   
     
     <div class="container-fluid">
-      <div class="row justify-content-md-center align-content-center">
+      <div class="row justify-content-center align-content-center">
         <div class="col-md-auto">
       
     {% for item in entry_details %}
@@ -127,10 +127,6 @@
     </div>
         
         
-        
-  
-            <div class="container">
-
             <div class="collapse" id="entry-edit-{{ item.id }}">
             <form action="/api/update-entry/{{ item.itinerary_id }}" method="POST">
   
