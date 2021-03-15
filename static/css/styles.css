@@ -8,6 +8,10 @@ body {
 	background-repeat: repeat;
 }
 
+.homepage {
+	text-align: center;
+}
+
 #itinerary-form {
 	display: none;
 }

@@ -4,8 +4,11 @@
 
 
 {% block body %}
-
-  <ul> <H2>{{ itinerary.name }}</H2>
+<div class="container-fluid">
+  <div  class="row justify-content-md-center align-content-center mt-2"
+        style="text-align: center;">
+    <div class="col-md-4">
+      <ul> <H2>{{ itinerary.name }}</H2>
         <p id="itinerary-start-date">{{ itinerary.start_date }}</p>
 
         <button type="button"
@@ -33,7 +36,8 @@
                 <textarea class="form-control"
                           name="description"></textarea>
               </div>
-              <div class="form-group-row">
+              <div class="form-group-row"
+                    style="text-align: left;s">
                 <label for="new-url">Website: </label>
                 <input type="url"
                       class="form-control"
@@ -66,10 +70,15 @@
             </div>
           </form>
         </div>
+    </div>
+  </div>
+</div>
+
+  
     
     <div class="container-fluid">
-      <div class="row justify-content-md-center">
-        <!-- <div class="col-md-8"> -->
+      <div class="row justify-content-md-center align-content-center">
+        <div class="col-md-auto">
       
     {% for item in entry_details %}
     
