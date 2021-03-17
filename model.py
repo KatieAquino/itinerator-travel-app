@@ -42,8 +42,8 @@ class Itinerary(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String(50), nullable=False)
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
+    start_date = db.Column(db.String(20))
+    end_date = db.Column(db.String(20))
 
     user = db.relationship('User', backref='users')
     entry = db.relationship('Entry', backref='entries')

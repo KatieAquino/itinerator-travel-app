@@ -25,27 +25,29 @@ def get_points_of_interests(place_data, radius=20000, kinds=None):
     final_req = []
 
     #will return all categories
-    if kinds == None:
-        url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=50&apikey={API_KEY}'
-        req = requests.get(url)
+    # if kinds == None:
+        # url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&format=json&limit=50&apikey={API_KEY}'
+    url = f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&kinds=cultural%2Cnatural%2Camusements%2Chistoric&format=json&limit=50&apikey={API_KEY}'
+    req = requests.get(url)
+    print('********', req)
 
-        print(req)
-        
-        return req.json()
+    print(req)
+    
+    return req.json()
 
     #loops through kinds to make individual request per category
     #returns list of json elements
-    else:
-        for item in kinds:
-            req = requests.get(f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&kinds={item}&format=json&limit=20&apikey={API_KEY}')
-            req = req.json()
-            mult_categories.append(req)
+    # else:
+    #     for item in kinds:
+    #         req = requests.get(f'https://api.opentripmap.com/0.1/en/places/radius?radius={radius}&lon={lon}&lat={lat}&kinds={item}&format=json&limit=20&apikey={API_KEY}')
+    #         req = req.json()
+    #         mult_categories.append(req)
         
-        for category in mult_categories:
-            for element in category:
-                final_req.append(element)
+    #     for category in mult_categories:
+    #         for element in category:
+    #             final_req.append(element)
         
-        return final_req
+    #     return final_req
 
 
 def get_place_info(place_list):
@@ -54,9 +56,10 @@ def get_place_info(place_list):
     place_details = []
 
     for place in place_list:
-        place_id = place['xid']
+        place_xid = place['xid']
+        print(place_xid)
 
-        url = f'https://api.opentripmap.com/0.1/en/places/xid/{place_id}?apikey={API_KEY}'
+        url = f'https://api.opentripmap.com/0.1/en/places/xid/{place_xid}?apikey={API_KEY}'
         req = requests.get(url)
         req = req.json()
         print(req)

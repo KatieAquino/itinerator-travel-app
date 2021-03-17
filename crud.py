@@ -28,7 +28,7 @@ def find_user_by_email(email):
 def find_itinerary_by_user_id(user_id):
     """Find user by user id"""
 
-    return Itinerary.query.filter(User.id == user_id).first()
+    return Itinerary.query.filter(Itinerary.user_id == user_id).all()
 
 
 def create_itinerary(user_id, name, start_date, end_date):

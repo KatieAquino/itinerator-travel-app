@@ -43,7 +43,13 @@ daisy_duck = create_user(      username = 'daisyduck',
                         lname = 'Duck'
                         )
 
-db_users = [mickey_mouse, minnie_mouse, donald_duck, daisy_duck]
+capt_janeway = create_user( username = 'capt_janeway',
+                            email = 'janeway@test.com',
+                            password = 'coffee',
+                            fname = 'Kate',
+                            lname = 'Janeway')
+
+db_users = [mickey_mouse, minnie_mouse, donald_duck, daisy_duck,]
 
 for person in db_users:
     db.session.add(person)

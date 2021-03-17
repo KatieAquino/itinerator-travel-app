@@ -81,14 +81,18 @@ def show_user_places():
     place = request.args.get('search_input')
     place = place.title()
     
-    user = crud.find_itinerary_by_user_id(session['user'])
-    itineraries = crud.find_itinerary_by_user(user)
+    user = session['user']
+    itineraries = crud.find_itinerary_by_user_id(user)
 
     place_found = crud.find_location_by_name(place)
+    print(place_found)
+    print('*********')
 
-    if place_found:
+    if place_found != None:
+        ('***** PLACE FOUND')
         poi_details = []
         details = crud.get_place_details(place_found)
+        print(details)
         
         for detail in details:
             poi_details.append({'xid': detail.xid,
@@ -99,11 +103,14 @@ def show_user_places():
         
 
     else:
-
+        ('********* going to get coordinates')
         location_coord = APIfunctions.get_place_coordinates(place)
+        ('coordinates received')
         location = crud.create_location(place)
         poi_options = APIfunctions.get_points_of_interests(location_coord)
+        ('list of places retrieved')
         poi_details = APIfunctions.get_place_info(poi_options)
+        ('details retrieved')
 
         for poi in poi_details:
             xid = poi['xid']
@@ -129,10 +136,14 @@ def show_user_profile():
         print(session['user'])
         print('*' * 25)
 
-        user = crud.find_itinerary_by_user_id(session['user'])
+        user = session['user']
         
-        itineraries = crud.find_itinerary_by_user(user)
+        itineraries = crud.find_itinerary_by_user_id(user)
         username = session['username']
+
+        print('*' * 100)
+        print('user id', session['user'])
+        print(itineraries)
 
         return render_template('profile.html', 
                                 itineraries=itineraries,
@@ -159,7 +170,7 @@ def show_entries_for_itinerary(id):
 def user_create_itinerary():
     """Allows user to create a new itinerary"""
 
-    user = crud.find_itinerary_by_user_id(session['user'])
+    user = session['user']
     name = request.form.get('new-name')
     start_date = request.form.get('start-date')
     end_date = request.form.get('end-date')
@@ -167,7 +178,7 @@ def user_create_itinerary():
     print('*' * 25)
     print('start_date: ', start_date)
 
-    crud.create_itinerary(user.id, name, start_date, end_date)
+    crud.create_itinerary(user, name, start_date, end_date)
 
     return redirect('/profile')
 
@@ -202,7 +213,6 @@ def user_edit_itinerary():
     crud.update_itinerary(itinerary, name, start_date, end_date)
 
     return redirect('/profile')
-
 
 
 @app.route('/api/update-entry/<id>', methods=['POST'])

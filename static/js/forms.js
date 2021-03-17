@@ -54,8 +54,8 @@ $('#delete-itinerary-confirmed').on('click', (evt) => {
     console.log(deleteItinerary);
 
     $.post(url, deleteItinerary, (res) => {
-
+    window.location.reload()
     });
     
-    window.location.replace('/profile')
+    
 })

@@ -164,7 +164,8 @@
             <div class="modal fade"
                   id="delete-entry-modal-{{ item.id }}"
                   tabindex="-1">
-              <div class="modal-dialog">
+              <div class="modal-dialog"
+                    style="color: #102a3f; ">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modal-delete-title">{{item.name}}</h5>
@@ -179,7 +180,7 @@
                     
                     <form id="delete-entry" method="POST">
                       <button type="button" 
-                              class="btn btn-primary"
+                              class="btn btn-danger"
                               name="{{item.id}}"
                               value="{{item.id}}"
                               id="delete-confirmed">Delete</button>
