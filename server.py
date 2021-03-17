@@ -223,6 +223,7 @@ def user_edit_entry(id):
     comments = request.form.get('comment-edit')
     url = request.form.get('url-edit')
     entry = crud.find_entry_by_id(id)
+    
     print('*' * 25)
     print('entry is: ', entry)
     print('*' * 25)
@@ -230,7 +231,7 @@ def user_edit_entry(id):
     crud.update_entry(name, comments, url, entry)
 
     flash(f'{name} successfully updated!')
-    return redirect('/profile')
+    return redirect(f'/itinerary/{entry.itinerary_id}')
 
 
 @app.route('/api/delete-entry/<id>', methods=['POST'])
@@ -239,11 +240,12 @@ def user_delete_entry(id):
 
 
     entry = crud.find_entry_by_id(id)
+    itinerary_id = entry.itinerary_id
     crud.delete_entry(entry)
 
     flash(f'Successfully updated your itinerary.')
-    return redirect('/profile')
 
+    return redirect(f'/itinerary/{itinerary_id}')
 
 @app.route('/api/new-entry', methods=['POST'])
 def user_add_entry():

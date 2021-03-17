@@ -25,11 +25,12 @@ $('#submit-entry').on('submit'), (evt) => {
     });
 
     window.location.reload();
-}
+};
 
-$('#delete-entry').on('click', (evt) => {
+$('#delete-confirmed').on('click', (evt) => {
     evt.preventDefault();
 
+    console.log('delete button clicked')
     const deleteEntryInfo = {
         id: $('#delete-confirmed').val()
     };
@@ -38,10 +39,10 @@ $('#delete-entry').on('click', (evt) => {
     console.log(`/api/delete-entry/${deleteEntryInfo['id']}`)
 
     $.post(`/api/delete-entry/${deleteEntryInfo['id']}`, deleteEntryInfo, (res) => {
-
+        window.location.reload()
     });
 
-    window.location.reload()
+    
 });
 
 $('#delete-itinerary-confirmed').on('click', (evt) => {
